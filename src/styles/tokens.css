@@ -1,0 +1,271 @@
+/* ─────────────────────────────────────────────
+   GRUPO CASTAÑEDA — Design System Tokens
+   ───────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  /* Colores */
+  --color-navy:      #1A2B4A;
+  --color-navy-90:   rgba(26, 43, 74, 0.90);
+  --color-gold:      #C89A3C;
+  --color-gold-20:   rgba(200, 154, 60, 0.20);
+  --color-cream:     #F5F2EC;
+  --color-beige:     #E5E0D6;
+  --color-terra:     #B85C3A;
+  --color-text:      #3A3A38;
+  --color-muted:     #5F5E5A;
+  --color-white:     #FFFFFF;
+
+  /* Tipografía */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+
+  /* Escala tipográfica */
+  --text-xs:   0.625rem;   /* 10px */
+  --text-sm:   0.75rem;    /* 12px */
+  --text-base: 0.9375rem;  /* 15px */
+  --text-md:   1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.5rem;     /* 24px */
+  --text-2xl:  2rem;       /* 32px */
+  --text-3xl:  2.75rem;    /* 44px */
+  --text-4xl:  3.5rem;     /* 56px */
+  --text-5xl:  4.5rem;     /* 72px */
+
+  /* Espaciado */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-7:  1.75rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Layout */
+  --container: 1200px;
+  --container-padding: clamp(1.5rem, 5vw, 4rem);
+
+  /* Easings personalizados (Emil Kowalski / impeccable) */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Bordes */
+  --border-thin: 0.5px solid var(--color-beige);
+  --radius-sm: 2px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Sombras — profundidad en lugar de bordes (estilo híbrido) */
+  --shadow-card: 0 1px 2px rgba(26, 43, 74, 0.04), 0 6px 20px rgba(26, 43, 74, 0.05);
+  --shadow-card-hover: 0 4px 12px rgba(26, 43, 74, 0.06), 0 16px 40px rgba(26, 43, 74, 0.10);
+
+  /* Transiciones base */
+  --transition-fast: 160ms var(--ease-out-expo);
+  --transition-base: 250ms var(--ease-out-expo);
+  --transition-slow: 500ms var(--ease-out-expo);
+}
+
+/* ─── Reset base ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ─── Utilidades globales ─── */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-inline: var(--container-padding);
+}
+
+.section {
+  padding-block: var(--space-24);
+}
+
+.section--lg {
+  padding-block: var(--space-32);
+}
+
+/* ─── Elementos de texto comunes ─── */
+.eyebrow {
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-terra);
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+.label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.gold-line {
+  width: 40px;
+  height: 2px;
+  background: var(--color-gold);
+  margin-block: var(--space-6);
+}
+
+/* ─── Botones ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 4px 20px rgba(26, 43, 74, 0.25);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-navy);
+  border: var(--border-thin);
+}
+
+.btn--outline:hover {
+  background: var(--color-beige);
+}
+
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--color-white);
+  border: 0.5px solid rgba(255,255,255,0.3);
+}
+
+.btn--ghost-dark:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ─── Placeholders de imagen (reemplazar por imágenes reales) ─── */
+.img-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  text-align: center;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  padding: var(--space-6);
+  background: var(--color-cream);
+  border: 1px dashed rgba(26, 43, 74, 0.22);
+  border-radius: var(--radius-lg);
+}
+
+.img-slot__label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-navy);
+  letter-spacing: 0.03em;
+}
+
+.img-slot__hint {
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.img-slot--wide      { aspect-ratio: 16 / 10; }
+.img-slot--portrait  { aspect-ratio: 3 / 4; }
+.img-slot--square    { aspect-ratio: 1 / 1; }
+.img-slot--video     { aspect-ratio: 16 / 9; }
+.img-slot--fullbleed { aspect-ratio: 21 / 9; border-radius: 0; width: 100%; }
+
+.img-slot--on-dark {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.img-slot--on-dark .img-slot__label { color: var(--color-white); }
+.img-slot--on-dark .img-slot__hint  { color: rgba(255, 255, 255, 0.5); }
+
+/* ─── Animaciones de entrada (GSAP targets) ─── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+[data-reveal-left] {
+  opacity: 0;
+  transform: translateX(-32px);
+}
+
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-left],
+  [data-stagger] > * {
+    opacity: 1;
+    transform: none;
+  }
+}

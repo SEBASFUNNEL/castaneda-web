@@ -1,0 +1,170 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/tokens.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Grupo Castañeda — Outsourcing Contable Integral para empresarios que necesitan claridad, prevención y acompañamiento más allá de la declaración mensual.',
+  ogImage = '/og-castaneda.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://grupocastaneda.pe');
+---
+
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_PE" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Schema: Negocio local -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AccountingService",
+      "name": "Grupo Castañeda",
+      "description": "Outsourcing Contable Integral — Contabilidad, Planillas, Tesorería y Tributación",
+      "url": "https://grupocastaneda.pe",
+      "areaServed": "PE",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PE",
+        "addressLocality": "Lima"
+      }
+    }
+  </script>
+
+  <title>{title}</title>
+</head>
+
+<body>
+  <Nav />
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <!-- Lenis + GSAP init -->
+  <script>
+    import Lenis from 'lenis';
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Smooth scroll con Lenis ──
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      touchMultiplier: 2,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    // ── Animaciones de entrada globales ──
+    const reveals = document.querySelectorAll('[data-reveal]');
+    reveals.forEach((el) => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1.04,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          once: true,
+        },
+      });
+    });
+
+    const revealsLeft = document.querySelectorAll('[data-reveal-left]');
+    revealsLeft.forEach((el) => {
+      gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 1.17,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          once: true,
+        },
+      });
+    });
+
+    // ── Stagger groups ──
+    const staggerGroups = document.querySelectorAll('[data-stagger]');
+    staggerGroups.forEach((group) => {
+      const children = group.querySelectorAll(':scope > *');
+      gsap.to(children, {
+        opacity: 1,
+        y: 0,
+        duration: 0.91,
+        ease: 'power3.out',
+        stagger: 0.104,
+        scrollTrigger: {
+          trigger: group,
+          start: 'top 85%',
+          once: true,
+        },
+      });
+    });
+
+    // ── Contadores animados ──
+    document.querySelectorAll('[data-counter]').forEach((el) => {
+      const target = parseInt(el.getAttribute('data-counter') ?? '0', 10);
+      const prefix = el.getAttribute('data-prefix') ?? '';
+      const suffix = el.getAttribute('data-suffix') ?? '';
+      const obj = { val: 0 };
+
+      gsap.to(obj, {
+        val: target,
+        duration: 2.6,
+        ease: 'power2.out',
+        snap: { val: 1 },
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+        },
+        onUpdate() {
+          el.textContent = prefix + obj.val + suffix;
+        },
+        onComplete() {
+          el.textContent = prefix + target + suffix;
+        },
+      });
+    });
+  </script>
+</body>
+</html>
