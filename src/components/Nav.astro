@@ -138,6 +138,8 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
 
   /* CTA */
   .nav__cta {
+    position: relative;
+    isolation: isolate;
     padding: 10px 20px;
     font-size: var(--text-xs);
     background: transparent;
@@ -147,6 +149,43 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
   }
 
   .nav__cta:hover { background: rgba(255, 255, 255, 0.12); }
+
+  /* ── Brillo dorado girando alrededor de la caja (lineal y cíclico) ── */
+  @property --cta-glow {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  .nav__cta::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 4px;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--cta-glow),
+      transparent 0deg,
+      rgba(200, 154, 60, 0.12) 40deg,
+      var(--color-gold) 72deg,
+      #fff4d6 88deg,
+      var(--color-gold) 104deg,
+      transparent 150deg,
+      transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    filter: drop-shadow(0 0 3px rgba(200, 154, 60, 0.55));
+    animation: cta-orbit 2.8s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+  }
+  @keyframes cta-orbit { to { --cta-glow: 360deg; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav__cta::before { animation: none; }
+  }
 
   /* Burger */
   .nav__burger {
