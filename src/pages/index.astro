@@ -42,7 +42,8 @@ const marqueeSectors = [...sectors, ...sectors];
 
         <h1 class="hero__heading" data-reveal>
           Tu empresa crece,<br>
-          Deja tu <span class="hero__rotator" aria-hidden="true"><span class="hero__rotator-list"><span class="hero__rotator-word">contabilidad</span><span class="hero__rotator-word">planilla</span><span class="hero__rotator-word">tributación</span><span class="hero__rotator-word">contabilidad</span></span></span><span class="hero__sr-only"> contabilidad, planilla y tributación</span> en manos de expertos
+          Deja tu <span class="hero__rotator" aria-hidden="true"><span class="hero__rotator-list"><span class="hero__rotator-word">contabilidad</span><span class="hero__rotator-word">planilla</span><span class="hero__rotator-word">tributación</span><span class="hero__rotator-word">contabilidad</span></span></span><span class="hero__sr-only"> contabilidad, planilla y tributación</span><br>
+          en manos de expertos
         </h1>
 
         <p class="hero__sub" data-reveal>
@@ -122,6 +123,15 @@ const marqueeSectors = [...sectors, ...sectors];
           <span class="video-card__hint">Ver video institucional</span>
         </a>
       </div>
+
+      <div class="videoint__cta" data-reveal>
+        <a href="/conversemos" class="btn btn--primary videoint__btn">
+          Agendemos una reunión
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -132,7 +142,6 @@ const marqueeSectors = [...sectors, ...sectors];
     <div class="container">
 
       <div class="sectors__header" data-reveal>
-        <span class="eyebrow">Empresas que confían</span>
         <h2 class="sectors__title" id="sectors-heading">
           Acompañamos a empresas en todos los rubros del Perú y del mundo
         </h2>
@@ -682,10 +691,10 @@ const marqueeSectors = [...sectors, ...sectors];
     background: linear-gradient(
       to right,
       rgba(26, 43, 74, 0.97) 0%,
-      rgba(26, 43, 74, 0.90) 30%,
-      rgba(26, 43, 74, 0.62) 55%,
-      rgba(26, 43, 74, 0.22) 75%,
-      rgba(26, 43, 74, 0.06) 100%
+      rgba(26, 43, 74, 0.92) 28%,
+      rgba(26, 43, 74, 0.58) 52%,
+      rgba(26, 43, 74, 0.16) 72%,
+      rgba(26, 43, 74, 0.0) 100%
     );
     z-index: 1;
   }
@@ -699,7 +708,8 @@ const marqueeSectors = [...sectors, ...sectors];
     z-index: 2;
   }
 
-  .hero__content { max-width: 600px; }
+  .hero__content { max-width: 600px; margin-left: -24px; }
+  @media (max-width: 768px) { .hero__content { margin-left: 0; } }
 
   .hero__content .eyebrow { color: var(--color-gold); }
 
@@ -725,7 +735,6 @@ const marqueeSectors = [...sectors, ...sectors];
     vertical-align: bottom;
     white-space: nowrap;
     width: 5.35em;
-    animation: hero-rotate-w 9s cubic-bezier(0.76, 0, 0.24, 1) infinite;
   }
 
   .hero__rotator-list {
@@ -749,13 +758,7 @@ const marqueeSectors = [...sectors, ...sectors];
     75%, 100%  { transform: translateY(-3.45em); }
   }
 
-  /* Ancho del contenedor en sync — el texto siguiente se ajusta a cada palabra */
-  @keyframes hero-rotate-w {
-    0%, 21%    { width: 5.35em; }  /* contabilidad */
-    25%, 46%   { width: 3.35em; }  /* planilla */
-    50%, 71%   { width: 4.81em; }  /* tributación */
-    75%, 100%  { width: 5.35em; }  /* contabilidad */
-  }
+  /* Ancho fijo del rotator: la palabra solo se desplaza en vertical (sin baile horizontal) */
 
   .hero__sr-only {
     position: absolute;
@@ -796,7 +799,8 @@ const marqueeSectors = [...sectors, ...sectors];
   }
 
   /* ── Brillo dorado girando alrededor de "Conversemos" (igual que el nav) ── */
-  .hero__actions .btn--primary {
+  .hero__actions .btn--primary,
+  .videoint__btn {
     position: relative;
     isolation: isolate;
   }
@@ -807,7 +811,8 @@ const marqueeSectors = [...sectors, ...sectors];
     inherits: false;
   }
 
-  .hero__actions .btn--primary::before {
+  .hero__actions .btn--primary::before,
+  .videoint__btn::before {
     content: '';
     position: absolute;
     inset: -2px;
@@ -836,7 +841,8 @@ const marqueeSectors = [...sectors, ...sectors];
   @keyframes hero-cta-orbit { to { --hero-cta-glow: 360deg; } }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero__actions .btn--primary::before { animation: none; }
+    .hero__actions .btn--primary::before,
+    .videoint__btn::before { animation: none; }
   }
 
   .hero__stats-strip {
@@ -993,6 +999,8 @@ const marqueeSectors = [...sectors, ...sectors];
   }
 
   .videoint__media { max-width: 880px; margin: 0 auto; }
+
+  .videoint__cta { text-align: center; margin-top: var(--space-10); }
 
   .video-card {
     position: relative;
