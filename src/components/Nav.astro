@@ -1,9 +1,11 @@
 ---
 const links = [
+  { href: '/', label: 'Inicio' },
   { href: '/servicios', label: 'Servicios' },
   { href: '/nosotros', label: 'Nosotros' },
 ];
 const currentPath = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
 <header class="nav" id="nav">
@@ -23,7 +25,7 @@ const currentPath = Astro.url.pathname;
       {links.map(link => (
         <a
           href={link.href}
-          class:list={['nav__link', { 'nav__link--active': currentPath.startsWith(link.href) }]}
+          class:list={['nav__link', { 'nav__link--active': isActive(link.href) }]}
         >
           {link.label}
         </a>
@@ -73,7 +75,7 @@ const currentPath = Astro.url.pathname;
     display: flex;
     align-items: center;
     gap: var(--space-8);
-    height: 64px;
+    height: 72px;
   }
 
   .nav__logo {
@@ -86,8 +88,8 @@ const currentPath = Astro.url.pathname;
   .nav__logo-img {
     display: block;
     width: auto;
-    height: 38px;
-    max-width: 228px;
+    height: 50px;
+    max-width: 300px;
     object-fit: contain;
   }
 
@@ -218,8 +220,8 @@ const currentPath = Astro.url.pathname;
     }
 
     .nav__logo-img {
-      height: 32px;
-      max-width: 180px;
+      height: 38px;
+      max-width: 220px;
     }
 
     .nav__mobile.is-open {

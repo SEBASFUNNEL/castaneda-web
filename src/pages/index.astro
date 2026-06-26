@@ -2,6 +2,17 @@
 import Base from '../layouts/Base.astro';
 
 const videoUrl = 'https://www.instagram.com/grupocastanedaoc/reel/DY5fvdYjuWf/';
+const sectors = [
+  { label: 'Comercio y retail', icon: 'retail' },
+  { label: 'Servicios', icon: 'services' },
+  { label: 'Logística', icon: 'logistics' },
+  { label: 'Construcción', icon: 'construction' },
+  { label: 'Salud', icon: 'health' },
+  { label: 'Tecnología', icon: 'technology' },
+  { label: 'Importación', icon: 'import' },
+  { label: 'Consultoría', icon: 'consulting' },
+];
+const marqueeSectors = [...sectors, ...sectors];
 ---
 
 <Base
@@ -125,30 +136,58 @@ const videoUrl = 'https://www.instagram.com/grupocastanedaoc/reel/DY5fvdYjuWf/';
 
       <div class="rubros-marquee" aria-label="Rubros en los que trabajamos" data-reveal>
         <div class="rubros-marquee__track" aria-hidden="true">
-          {[
-            'Comercio y retail',
-            'Servicios',
-            'Logística',
-            'Construcción',
-            'Salud',
-            'Tecnología',
-            'Importación',
-            'Consultoría',
-            'Comercio y retail',
-            'Servicios',
-            'Logística',
-            'Construcción',
-            'Salud',
-            'Tecnología',
-            'Importación',
-            'Consultoría',
-          ].map((label) => (
+          {marqueeSectors.map(({ label, icon }) => (
             <div class="sector sector--marquee">
               <span class="sector__icon" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/>
-                  <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                </svg>
+                {icon === 'retail' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 7h12l1 13H5L6 7z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                    <path d="M9 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                )}
+                {icon === 'services' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                )}
+                {icon === 'logistics' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 6h11v10H2zM13 9h4l3 3.5V16h-7z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                    <circle cx="6.5" cy="18" r="1.6" stroke="currentColor" stroke-width="1.2"/>
+                    <circle cx="16.5" cy="18" r="1.6" stroke="currentColor" stroke-width="1.2"/>
+                  </svg>
+                )}
+                {icon === 'construction' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="3" width="16" height="18" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M9 21v-4h6v4M8 7h2M14 7h2M8 11h2M14 11h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                )}
+                {icon === 'health' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 21S4 14.5 4 9a4 4 0 018-1 4 4 0 018 1c0 5.5-8 12-8 12z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                  </svg>
+                )}
+                {icon === 'technology' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="4" width="18" height="12" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M9 20h6M12 16v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                )}
+                {icon === 'import' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.2"/>
+                  </svg>
+                )}
+                {icon === 'consulting' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M16 5.2a3 3 0 010 5.6M21 20c0-2.5-1.5-4.6-3.7-5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                )}
               </span>
               <span class="sector__label">{label}</span>
             </div>
@@ -617,7 +656,7 @@ const videoUrl = 'https://www.instagram.com/grupocastanedaoc/reel/DY5fvdYjuWf/';
   /* ── HERO ─────────────────────────────────── */
   .hero {
     background: var(--color-navy);
-    padding-top: calc(64px + var(--space-24));
+    padding-top: calc(72px + var(--space-24));
     padding-bottom: var(--space-20);
     position: relative;
     overflow: hidden;
@@ -1092,7 +1131,7 @@ const videoUrl = 'https://www.instagram.com/grupocastanedaoc/reel/DY5fvdYjuWf/';
 
   .guide__text {
     position: sticky;
-    top: calc(64px + var(--space-8));
+    top: calc(72px + var(--space-8));
     border: var(--border-thin);
     border-radius: var(--radius-md);
     background: var(--color-white);
