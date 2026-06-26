@@ -354,6 +354,12 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <style>
+  @property --glow-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
   /* ── PAGE HERO ─────────────────────────────── */
   .page-hero {
     background: var(--color-navy);
@@ -425,7 +431,7 @@ import Base from '../layouts/Base.astro';
 
   .process-step:last-child { border-bottom: none; }
 
-  .process-step:nth-child(even) { background: var(--color-cream); }
+  .process-step:nth-child(even) { background: var(--color-white); }
 
   .process-step__num {
     font-family: var(--font-serif);
@@ -650,10 +656,53 @@ import Base from '../layouts/Base.astro';
 
   /* ── FORMULARIO ────────────────────────────── */
   .contact-form-wrap {
-    border: var(--border-thin);
+    position: relative;
+    border: 0;
     border-radius: var(--radius-md);
     padding: var(--space-8);
-    background: var(--color-cream);
+    background: var(--color-white);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .contact-form-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg),
+      rgba(200,154,60,0.10),
+      rgba(200,154,60,0.95),
+      rgba(255,255,255,0.20),
+      rgba(200,154,60,0.10)
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: contact-glow-spin 7s linear infinite;
+    pointer-events: none;
+  }
+
+  .contact-form-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle at 50% 0%, rgba(200,154,60,0.12), transparent 34%);
+    pointer-events: none;
+  }
+
+  .contact-form-header,
+  .contact__form {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes contact-glow-spin {
+    from { --glow-angle: 0deg; }
+    to { --glow-angle: 360deg; }
   }
 
   .contact-form-header { margin-bottom: var(--space-8); }

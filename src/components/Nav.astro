@@ -10,12 +10,13 @@ const currentPath = Astro.url.pathname;
   <div class="container nav__inner">
 
     <a href="/" class="nav__logo" aria-label="Grupo Castañeda — Inicio">
-      <span class="nav__logo-gc">GC</span>
-      <span class="nav__logo-sep" aria-hidden="true"></span>
-      <span class="nav__logo-text">
-        <span class="nav__logo-name">Grupo Castañeda</span>
-        <span class="nav__logo-sub">Outsourcing Contable</span>
-      </span>
+      <img
+        src="/logo-grupo-castaneda-white.png"
+        alt="Grupo Castañeda Outsourcing Contable"
+        class="nav__logo-img"
+        width="1080"
+        height="454"
+      />
     </a>
 
     <nav class="nav__links" aria-label="Navegación principal">
@@ -75,50 +76,19 @@ const currentPath = Astro.url.pathname;
     height: 64px;
   }
 
-  /* Logo */
   .nav__logo {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
     text-decoration: none;
     flex-shrink: 0;
   }
 
-  .nav__logo-gc {
-    font-family: var(--font-serif);
-    font-size: var(--text-lg);
-    font-weight: 500;
-    color: var(--color-white);
-    line-height: 1;
-  }
-
-  .nav__logo-sep {
-    width: 0.5px;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.25);
-  }
-
-  .nav__logo-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-
-  .nav__logo-name {
-    font-family: var(--font-sans);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-white);
-    letter-spacing: 0.02em;
-    line-height: 1;
-  }
-
-  .nav__logo-sub {
-    font-size: var(--text-xs);
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    line-height: 1;
+  .nav__logo-img {
+    display: block;
+    width: auto;
+    height: 38px;
+    max-width: 228px;
+    object-fit: contain;
   }
 
   /* Links */
@@ -245,6 +215,11 @@ const currentPath = Astro.url.pathname;
 
     .nav__burger {
       display: flex;
+    }
+
+    .nav__logo-img {
+      height: 32px;
+      max-width: 180px;
     }
 
     .nav__mobile.is-open {
