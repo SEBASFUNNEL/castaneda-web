@@ -1,27 +1,18 @@
-# Fotos de servicios — pendientes de cargar
+# Fotos de servicios
 
-Sebastián dejó 4 fotos en el chat (no se pueden escribir a disco desde ahí).
-Para usarlas: guarda cada archivo en **esta carpeta** (`public/images/`) con el
-nombre indicado abajo. Una vez estén aquí, se cablean en el sitio (sección/página
-de servicios) en la siguiente sesión.
+Las fotos de servicios ya estan cargadas y conectadas en `src/pages/servicios.astro`.
 
-## Mapeo sugerido (alineado con el carrusel del hero)
+## Mapeo actual
 
-| # | Qué muestra la foto | Orientación | Nombre de archivo |
-|---|---------------------|-------------|-------------------|
-| 1 | Ejecutivo frente a laptop con dashboards financieros, vista a la ciudad | horizontal | `servicio-contabilidad.jpg` |
-| 2 | Persona revisando reporte impreso, laptop con planilla, calendario | horizontal | `servicio-planillas.jpg` |
-| 3 | Manos con lapicero sobre formularios tributarios y calculadora | horizontal | `servicio-tributacion.jpg` |
-| 4 | Contador con lentes en escritorio, bandera del Perú (retrato) | vertical | `contador-peru-retrato.jpg` |
+| Archivo | Uso |
+|---|---|
+| `servicio-contabilidad.png` | Bloque de Contabilidad |
+| `servicio-planillas.png` | Bloque de Planillas |
+| `diagnostico-contable-dashboard.png` | Bloque de Tesoreria |
+| `servicio-tributacion.png` | Bloque de Tributacion |
+| `contador-peru-retrato.png` | Hero de la pagina Servicios |
+| `equipo-presentacion-contable.png` | Hero y media de Conversemos; hero de Nosotros |
+| `sala-reunion-castaneda.png` | Hero de Conversemos; panoramica de Nosotros |
 
-Los nombres 1–3 coinciden con las palabras que rotan en el titular del hero
-(contabilidad / planilla / tributación), por si se quiere una grilla de servicios
-con foto por rubro.
-
-## Estado del hero (ya hecho y subido)
-- Hero full-bleed con imagen de fondo + overlay navy.
-- Titular: "Tu empresa crece, deja tu {contabilidad/planilla/tributación} en
-  manos de expertos" con carrusel vertical (ancho animado en sync).
-- Subtítulo reescrito acorde.
-- Botón "Conversemos" del hero con el mismo brillo orbital dorado del nav.
-- Stats integradas en una franja glassmorphism al pie del hero.
+Las imagenes se renderizan con `object-fit: cover` y ajustes de `object-position`
+por bloque para mantener un encuadre estable en desktop y mobile.

@@ -10,7 +10,7 @@ import Base from '../layouts/Base.astro';
   <!-- HERO -->
   <section class="page-hero">
     <div class="container page-hero__inner page-hero__inner--split">
-      <div data-reveal>
+      <div class="page-hero__copy" data-reveal>
         <span class="eyebrow nos__eyebrow">Quiénes somos</span>
         <h1 class="page-hero__heading">
           Más de 10 años<br>
@@ -22,10 +22,16 @@ import Base from '../layouts/Base.astro';
         </p>
       </div>
       <div class="page-hero__media" data-reveal>
-        <div class="img-slot img-slot--portrait img-slot--on-dark" data-img="nos-equipo">
-          <span class="img-slot__label">Foto del equipo</span>
-          <span class="img-slot__hint">Retrato grupal · ~600 × 780 px</span>
-        </div>
+        <figure class="page-hero-photo">
+          <img
+            src="/images/equipo-presentacion-contable.png"
+            alt="Equipo contable de Grupo Castañeda en una reunión ejecutiva"
+            width="1942"
+            height="809"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -96,10 +102,16 @@ import Base from '../layouts/Base.astro';
     </div>
 
     <div class="story__photo" data-reveal>
-      <div class="img-slot img-slot--fullbleed" data-img="nos-oficina">
-        <span class="img-slot__label">Foto del equipo / oficinas</span>
-        <span class="img-slot__hint">Full-bleed panorámica · ~1920 × 840 px</span>
-      </div>
+      <figure class="story__photo-frame">
+        <img
+          src="/images/sala-reunion-castaneda.png"
+          alt="Sala de reuniones de Grupo Castañeda preparada para una sesión con clientes"
+          width="1896"
+          height="829"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
     </div>
 
   </section>
@@ -142,10 +154,16 @@ import Base from '../layouts/Base.astro';
       </div>
 
       <div class="how__media" data-reveal>
-        <div class="img-slot img-slot--wide" data-img="nos-work">
-          <span class="img-slot__label">Grupo Castañeda trabajando</span>
-          <span class="img-slot__hint">Reunión de equipo / trabajo contable · ~1200 × 500 px</span>
-        </div>
+        <figure class="how__photo">
+          <img
+            src="/images/equipo-grupo-castaneda-reunion.png"
+            alt="Equipo de Grupo Castañeda revisando información contable en una reunión"
+            width="1726"
+            height="911"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       </div>
 
       <div class="how__grid" data-stagger>
@@ -250,6 +268,10 @@ import Base from '../layouts/Base.astro';
   }
 
   .page-hero__inner { position: relative; z-index: 1; max-width: 680px; }
+
+  .page-hero__copy {
+    padding-left: clamp(64px, 8vw, 116px);
+  }
 
   .nos__eyebrow { color: var(--color-gold) !important; }
 
@@ -486,6 +508,7 @@ import Base from '../layouts/Base.astro';
   @media (max-width: 900px) {
     .page-hero__inner--split { grid-template-columns: 1fr; }
     .page-hero__media { display: none; }
+    .page-hero__copy { padding-left: 0; }
   }
 
   /* ── STORY + HOW MEDIA ─────────────────────── */
@@ -496,10 +519,44 @@ import Base from '../layouts/Base.astro';
     overflow: visible;
   }
 
-  .story__photo .img-slot,
-  .how__media .img-slot {
+  .page-hero-photo,
+  .story__photo-frame,
+  .how__photo {
+    margin: 0;
+    overflow: hidden;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
+    border: var(--border-thin);
+    background: var(--color-soft);
+  }
+
+  .page-hero-photo {
+    aspect-ratio: 4 / 3;
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+  }
+
+  .story__photo-frame { aspect-ratio: 21 / 9; }
+
+  .how__photo { aspect-ratio: 16 / 8; }
+
+  .page-hero-photo img,
+  .story__photo-frame img,
+  .how__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .page-hero-photo img { object-position: 52% 50%; }
+  .story__photo-frame img { object-position: 50% 52%; }
+  .how__photo img { object-position: 50% 48%; }
+
+  @media (min-width: 901px) {
+    .page-hero__inner--split {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+    }
   }
 
   .how__media {

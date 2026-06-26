@@ -41,9 +41,9 @@ const marqueeSectors = [...sectors, ...sectors];
         <span class="eyebrow" data-reveal>Outsourcing Contable Integral · Lima, Perú</span>
 
         <h1 class="hero__heading" data-reveal>
-          Tu empresa crece,<br>
-          Deja tu <span class="hero__rotator" aria-hidden="true"><span class="hero__rotator-list"><span class="hero__rotator-word">contabilidad</span><span class="hero__rotator-word">planilla</span><span class="hero__rotator-word">tributación</span><span class="hero__rotator-word">contabilidad</span></span></span><span class="hero__sr-only"> contabilidad, planilla y tributación</span><br>
-          en manos de expertos
+          <span class="hero__line">Tu empresa crece,</span>
+          <span class="hero__line">Deja tu <span class="hero__rotator" aria-hidden="true"><span class="hero__rotator-list"><span class="hero__rotator-word">contabilidad</span><span class="hero__rotator-word">planilla</span><span class="hero__rotator-word">tributación</span><span class="hero__rotator-word">contabilidad</span></span></span><span class="hero__sr-only"> contabilidad, planilla y tributación</span></span>
+          <span class="hero__line">en manos de expertos</span>
         </h1>
 
         <p class="hero__sub" data-reveal>
@@ -677,11 +677,11 @@ const marqueeSectors = [...sectors, ...sectors];
 
   .hero__bg {
     position: absolute;
-    inset: 0;
-    width: 100%;
+    inset: 0 -7vw 0 0;
+    width: calc(100% + 7vw);
     height: 100%;
     object-fit: cover;
-    object-position: right center;
+    object-position: 82% center;
     z-index: 0;
   }
 
@@ -691,9 +691,9 @@ const marqueeSectors = [...sectors, ...sectors];
     background: linear-gradient(
       to right,
       rgba(26, 43, 74, 0.97) 0%,
-      rgba(26, 43, 74, 0.92) 28%,
-      rgba(26, 43, 74, 0.58) 52%,
-      rgba(26, 43, 74, 0.16) 72%,
+      rgba(26, 43, 74, 0.92) 34%,
+      rgba(26, 43, 74, 0.58) 58%,
+      rgba(26, 43, 74, 0.16) 78%,
       rgba(26, 43, 74, 0.0) 100%
     );
     z-index: 1;
@@ -708,7 +708,7 @@ const marqueeSectors = [...sectors, ...sectors];
     z-index: 2;
   }
 
-  .hero__content { max-width: 600px; margin-left: -24px; }
+  .hero__content { max-width: 600px; margin-left: clamp(-150px, -10vw, -96px); }
   @media (max-width: 768px) { .hero__content { margin-left: 0; } }
 
   .hero__content .eyebrow { color: var(--color-gold); }
@@ -726,6 +726,9 @@ const marqueeSectors = [...sectors, ...sectors];
 
   .hero__heading em { font-style: italic; color: var(--color-gold); }
 
+  /* Cada línea es un bloque que nunca se parte → siempre 3 filas, a cualquier ancho */
+  .hero__line { display: block; white-space: nowrap; }
+
   /* ── Carrusel vertical de palabras (contabilidad / planilla / tributación) ── */
   .hero__rotator {
     display: inline-block;
@@ -735,6 +738,9 @@ const marqueeSectors = [...sectors, ...sectors];
     vertical-align: bottom;
     white-space: nowrap;
     width: 5.35em;
+    /* Recorte mínimo (en em, seguro a cualquier tamaño) para que no asome la palabra vecina */
+    -webkit-clip-path: inset(0.06em 0);
+            clip-path: inset(0.06em 0);
   }
 
   .hero__rotator-list {
@@ -928,14 +934,14 @@ const marqueeSectors = [...sectors, ...sectors];
   /* ── SECTORES ─────────────────────────────── */
   .sectors {
     background: var(--color-white);
-    padding-block: var(--space-24);
+    padding-block: var(--space-16) var(--space-20);
     border-bottom: var(--border-thin);
   }
 
   .sectors__header {
     text-align: center;
     max-width: 760px;
-    margin: 0 auto var(--space-16);
+    margin: 0 auto var(--space-10);
   }
 
   .sectors__title {
@@ -985,9 +991,9 @@ const marqueeSectors = [...sectors, ...sectors];
   }
 
   /* ── VIDEO INTEGRAL ───────────────────────── */
-  .videoint { padding-block: var(--space-24); background: var(--color-white); }
+  .videoint { padding-block: var(--space-20) var(--space-10); background: var(--color-white); }
 
-  .videoint__head { text-align: center; max-width: 640px; margin: 0 auto var(--space-12); }
+  .videoint__head { text-align: center; max-width: 640px; margin: 0 auto var(--space-10); }
 
   .videoint__title {
     font-family: var(--font-serif);
@@ -1000,7 +1006,7 @@ const marqueeSectors = [...sectors, ...sectors];
 
   .videoint__media { max-width: 880px; margin: 0 auto; }
 
-  .videoint__cta { text-align: center; margin-top: var(--space-10); }
+  .videoint__cta { text-align: center; margin-top: var(--space-5); }
 
   .video-card {
     position: relative;
@@ -1185,7 +1191,7 @@ const marqueeSectors = [...sectors, ...sectors];
   /* ── STAKES ───────────────────────────────── */
   .stakes {
     background: var(--color-white);
-    padding-block: var(--space-24);
+    padding-block: var(--space-20);
     border-top: var(--border-thin);
   }
 
@@ -1288,7 +1294,7 @@ const marqueeSectors = [...sectors, ...sectors];
   }
 
   .guide__media-panel {
-    margin-top: var(--space-12);
+    margin-top: var(--space-8);
     text-align: center;
   }
 
@@ -1431,12 +1437,14 @@ const marqueeSectors = [...sectors, ...sectors];
     line-height: 1.65;
   }
 
-  .plan__cta { text-align: center; margin-top: var(--space-12); }
+  .plan__cta { text-align: center; margin-top: var(--space-8); }
 
   /* ── SERVICES ─────────────────────────────── */
-  .section-header { max-width: 560px; margin-bottom: var(--space-16); }
+  .section { padding-block: var(--space-20); }
 
-  .section-header--center { max-width: 560px; margin-inline: auto; margin-bottom: var(--space-16); text-align: center; }
+  .section-header { max-width: 560px; margin-bottom: var(--space-12); }
+
+  .section-header--center { max-width: 560px; margin-inline: auto; margin-bottom: var(--space-12); text-align: center; }
 
   .section-title {
     font-family: var(--font-serif);
@@ -1508,7 +1516,7 @@ const marqueeSectors = [...sectors, ...sectors];
     align-self: flex-start;
   }
 
-  .services__more { text-align: center; margin-top: var(--space-12); }
+  .services__more { text-align: center; margin-top: var(--space-8); }
 
   /* ── BENEFICIOS ───────────────────────────── */
   .benefits__grid {
@@ -1564,7 +1572,7 @@ const marqueeSectors = [...sectors, ...sectors];
   /* ── CTA FINAL ────────────────────────────── */
   .cta-final {
     background: var(--color-navy);
-    padding-block: var(--space-24);
+    padding-block: var(--space-20);
   }
 
   .cta-final__inner {

@@ -10,7 +10,7 @@ import Base from '../layouts/Base.astro';
   <!-- HERO -->
   <section class="page-hero">
     <div class="container page-hero__inner page-hero__inner--split">
-      <div data-reveal>
+      <div class="page-hero__copy" data-reveal>
         <span class="eyebrow serv__eyebrow">Lo que hacemos</span>
         <h1 class="page-hero__heading">
           Cuatro áreas.<br>
@@ -23,10 +23,16 @@ import Base from '../layouts/Base.astro';
         </p>
       </div>
       <div class="page-hero__media" data-reveal>
-        <div class="img-slot img-slot--portrait img-slot--on-dark" data-img="serv-hero">
-          <span class="img-slot__label">Trabajo contable</span>
-          <span class="img-slot__hint">Contador en acción · ~600 × 780 px</span>
-        </div>
+        <figure class="serv-hero-photo">
+          <img
+            src="/images/contador-peru-retrato.png"
+            alt="Contador peruano trabajando en una oficina ejecutiva"
+            width="1100"
+            height="1430"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -52,12 +58,17 @@ import Base from '../layouts/Base.astro';
           </div>
         </div>
         <div class="serv-block__body">
-          <div class="serv-block__photo" data-reveal>
-            <div class="img-slot img-slot--wide" data-img="serv-contabilidad">
-              <span class="img-slot__label">B-roll — Contabilidad</span>
-              <span class="img-slot__hint">Libros / pantallas / análisis · ~900 × 480 px</span>
-            </div>
-          </div>
+          <figure class="serv-block__photo" data-reveal>
+            <img
+              class="serv-block__img serv-block__img--contabilidad"
+              src="/images/servicio-contabilidad.png"
+              alt="Ejecutivo revisando indicadores contables y financieros en una laptop"
+              width="1717"
+              height="916"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
           <p class="serv-block__lead">
             Más que declaraciones: un registro mensual riguroso que genera información
             financiera real para que puedas tomar decisiones con datos, no suposiciones.
@@ -93,12 +104,17 @@ import Base from '../layouts/Base.astro';
           </div>
         </div>
         <div class="serv-block__body">
-          <div class="serv-block__photo" data-reveal>
-            <div class="img-slot img-slot--wide" data-img="serv-planillas">
-              <span class="img-slot__label">B-roll — Planillas</span>
-              <span class="img-slot__hint">Gestión de personal / nómina · ~900 × 480 px</span>
-            </div>
-          </div>
+          <figure class="serv-block__photo" data-reveal>
+            <img
+              class="serv-block__img serv-block__img--planillas"
+              src="/images/servicio-planillas.png"
+              alt="Revisión de reporte de planillas con laptop, calendario y calculadora"
+              width="1717"
+              height="916"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
           <p class="serv-block__lead">
             Gestión integral de la nómina de tu empresa: desde el alta de colaboradores
             hasta la presentación puntual ante SUNAT, sin errores ni retrasos.
@@ -136,12 +152,17 @@ import Base from '../layouts/Base.astro';
           </div>
         </div>
         <div class="serv-block__body">
-          <div class="serv-block__photo" data-reveal>
-            <div class="img-slot img-slot--wide" data-img="serv-tesoreria">
-              <span class="img-slot__label">B-roll — Tesorería</span>
-              <span class="img-slot__hint">Dashboard financiero / flujo de caja · ~900 × 480 px</span>
-            </div>
-          </div>
+          <figure class="serv-block__photo" data-reveal>
+            <img
+              class="serv-block__img serv-block__img--tesoreria"
+              src="/images/diagnostico-contable-dashboard.png"
+              alt="Dashboard financiero con indicadores para control de tesorería"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
           <p class="serv-block__lead">
             Control en tiempo real de tu flujo de caja: sabrás con anticipación si tienes
             liquidez para cubrir tus obligaciones, y recibirás alertas cuando el margen se estreche.
@@ -177,12 +198,17 @@ import Base from '../layouts/Base.astro';
           </div>
         </div>
         <div class="serv-block__body">
-          <div class="serv-block__photo" data-reveal>
-            <div class="img-slot img-slot--wide" data-img="serv-tributacion">
-              <span class="img-slot__label">B-roll — Tributación</span>
-              <span class="img-slot__hint">Documentos SUNAT / planificación · ~900 × 480 px</span>
-            </div>
-          </div>
+          <figure class="serv-block__photo" data-reveal>
+            <img
+              class="serv-block__img serv-block__img--tributacion"
+              src="/images/servicio-tributacion.png"
+              alt="Formularios tributarios, calculadora y revisión documental"
+              width="1717"
+              height="916"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
           <p class="serv-block__lead">
             No solo declaramos tus impuestos, los planificamos. Revisamos continuamente
             si tu estructura tributaria es la más eficiente dentro del marco legal vigente.
@@ -245,6 +271,10 @@ import Base from '../layouts/Base.astro';
   }
 
   .page-hero__inner { position: relative; z-index: 1; max-width: 720px; }
+
+  .page-hero__copy {
+    padding-left: clamp(64px, 8vw, 116px);
+  }
 
   .serv__eyebrow { color: var(--color-gold) !important; }
 
@@ -403,11 +433,59 @@ import Base from '../layouts/Base.astro';
 
   .page-hero__media { flex-shrink: 0; }
 
+  .serv-hero-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    margin: 0;
+    overflow: hidden;
+    border: 0.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+  }
+
+  .serv-hero-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 42%;
+  }
+
   @media (max-width: 900px) {
     .page-hero__inner--split { grid-template-columns: 1fr; }
     .page-hero__media { display: none; }
+    .page-hero__copy { padding-left: 0; }
   }
 
   /* ── SERVICE BLOCK PHOTO ──────────────────── */
-  .serv-block__photo { margin-bottom: var(--space-6); }
+  .serv-block__photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0 0 var(--space-6);
+    overflow: hidden;
+    border: var(--border-thin);
+    border-radius: var(--radius-md);
+    background: var(--color-soft);
+    box-shadow: var(--shadow-card);
+  }
+
+  .serv-block__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .serv-block:hover .serv-block__img { transform: scale(1.025); }
+
+  .serv-block__img--contabilidad { object-position: 54% 48%; }
+  .serv-block__img--planillas { object-position: 52% 52%; }
+  .serv-block__img--tesoreria { object-position: 52% 46%; }
+  .serv-block__img--tributacion { object-position: 50% 52%; }
+
+  @media (max-width: 640px) {
+    .serv-block__photo { aspect-ratio: 4 / 3; }
+  }
 </style>
