@@ -6,8 +6,9 @@
 |----------------------|------------------------------|----------------------------------|
 | `--color-navy`       | `#1A2B4A`                    | Primario, fondos oscuros, texto  |
 | `--color-gold`       | `#C89A3C`                    | Acento, CTA highlights, íconos   |
-| `--color-cream`      | `#F5F2EC`                    | Fondo claro principal            |
-| `--color-beige`      | `#E5E0D6`                    | Separadores, fondos secundarios  |
+| `--color-white`      | `#FFFFFF`                    | Fondos claros principales        |
+| `--color-soft`       | `#F7F8FA`                    | Hover y superficies auxiliares   |
+| `--color-line`       | `#E6E8EC`                    | Separadores y bordes             |
 | `--color-terra`      | `#B85C3A`                    | Eyebrow texto, alertas visuales  |
 | `--color-text`       | `#3A3A38`                    | Texto cuerpo                     |
 | `--color-muted`      | `#5F5E5A`                    | Texto secundario, labels         |

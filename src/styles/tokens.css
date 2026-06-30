@@ -10,8 +10,9 @@
   --color-navy-90:   rgba(26, 43, 74, 0.90);
   --color-gold:      #C89A3C;
   --color-gold-20:   rgba(200, 154, 60, 0.20);
-  --color-cream:     #F5F2EC;
-  --color-beige:     #E5E0D6;
+  --color-surface:   #FFFFFF;
+  --color-soft:      #F7F8FA;
+  --color-line:      #E6E8EC;
   --color-terra:     #B85C3A;
   --color-text:      #3A3A38;
   --color-muted:     #5F5E5A;
@@ -59,7 +60,7 @@
   --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
 
   /* Bordes */
-  --border-thin: 0.5px solid var(--color-beige);
+  --border-thin: 0.5px solid var(--color-line);
   --radius-sm: 2px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -188,7 +189,7 @@ html.lenis, html.lenis body {
 }
 
 .btn--outline:hover {
-  background: var(--color-beige);
+  background: var(--color-soft);
 }
 
 .btn--ghost-dark {
@@ -212,7 +213,7 @@ html.lenis, html.lenis body {
   width: 100%;
   aspect-ratio: 3 / 2;
   padding: var(--space-6);
-  background: var(--color-cream);
+  background: var(--color-white);
   border: 1px dashed rgba(26, 43, 74, 0.22);
   border-radius: var(--radius-lg);
 }

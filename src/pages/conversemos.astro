@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? 'https://formspree.io/f/mgojkkjb';
 ---
 
 <Base
@@ -12,7 +14,7 @@ import Base from '../layouts/Base.astro';
   ══════════════════════════════════════════ -->
   <section class="page-hero">
     <div class="container page-hero__inner page-hero__inner--split">
-      <div data-reveal>
+      <div class="page-hero__copy" data-reveal>
         <span class="eyebrow conv__eyebrow">El primer paso</span>
         <h1 class="page-hero__heading">
           Una conversación honesta<br>
@@ -24,10 +26,16 @@ import Base from '../layouts/Base.astro';
         </p>
       </div>
       <div class="page-hero__media" data-reveal>
-        <div class="img-slot img-slot--portrait img-slot--on-dark" data-img="conv-oficina">
-          <span class="img-slot__label">Sala de reuniones</span>
-          <span class="img-slot__hint">Consultoría / llamada · ~600 × 780 px</span>
-        </div>
+        <figure class="page-hero-photo">
+          <img
+            src="/images/sala-reunion-castaneda.png"
+            alt="Sala de reuniones preparada para conversar con clientes de Grupo Castañeda"
+            width="1896"
+            height="829"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -215,10 +223,16 @@ import Base from '../layouts/Base.astro';
        MEDIA — Foto ambiente
   ══════════════════════════════════════════ -->
   <div class="container conv-media" data-reveal>
-    <div class="img-slot img-slot--wide img-slot--on-dark" data-img="conv-team">
-      <span class="img-slot__label">Equipo Grupo Castañeda</span>
-      <span class="img-slot__hint">Sala de reuniones / ambiente profesional · ~1200 × 560 px</span>
-    </div>
+    <figure class="conv-media__photo">
+      <img
+        src="/images/equipo-presentacion-contable.png"
+        alt="Equipo de Grupo Castañeda presentando indicadores contables en sala de reuniones"
+        width="1942"
+        height="809"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
   </div>
 
   <!-- ══════════════════════════════════════════
@@ -285,7 +299,7 @@ import Base from '../layouts/Base.astro';
       </div>
 
       <!-- Formulario -->
-      <div class="contact-form-wrap" data-reveal>
+      <div class="contact-form-wrap">
         <div class="contact-form-header">
           <h3 class="contact-form-title">O déjanos tus datos y te contactamos nosotros</h3>
           <p class="contact-form-sub">Cuéntanos brevemente tu situación y te respondemos antes de las 24 horas.</p>
@@ -293,10 +307,11 @@ import Base from '../layouts/Base.astro';
 
         <form
           class="contact__form"
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action={formspreeEndpoint}
           method="POST"
           novalidate
         >
+          <input type="hidden" name="_subject" value="Nueva consulta desde Grupo Castañeda" />
           <div class="form__row">
             <div class="form__field">
               <label class="form__label" for="nombre">Nombre completo</label>
@@ -354,10 +369,16 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <style>
+  @property --glow-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
   /* ── PAGE HERO ─────────────────────────────── */
   .page-hero {
     background: var(--color-navy);
-    padding-top: calc(64px + var(--space-24));
+    padding-top: calc(108px + var(--space-24));
     padding-bottom: var(--space-20);
     position: relative;
     overflow: hidden;
@@ -379,6 +400,10 @@ import Base from '../layouts/Base.astro';
     position: relative;
     z-index: 1;
     max-width: 680px;
+  }
+
+  .page-hero__copy {
+    padding-left: clamp(64px, 8vw, 116px);
   }
 
   .conv__eyebrow { color: var(--color-gold) !important; }
@@ -425,7 +450,7 @@ import Base from '../layouts/Base.astro';
 
   .process-step:last-child { border-bottom: none; }
 
-  .process-step:nth-child(even) { background: var(--color-cream); }
+  .process-step:nth-child(even) { background: var(--color-white); }
 
   .process-step__num {
     font-family: var(--font-serif);
@@ -566,35 +591,42 @@ import Base from '../layouts/Base.astro';
   /* ── CONTACT CTA ───────────────────────────── */
   .contact-cta__inner {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: var(--space-16);
-    align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+    align-items: stretch;
   }
 
   .contact-cta__header {
-    position: sticky;
-    top: calc(64px + var(--space-8));
+    grid-column: 1 / -1;
+    max-width: 680px;
+    margin-inline: auto;
+    text-align: center;
   }
+
+  .contact-cta__header .gold-line { margin-inline: auto; }
 
   .contact-cta__sub {
     font-size: var(--text-base);
     color: var(--color-muted);
     line-height: 1.7;
-    margin-top: var(--space-6);
-    margin-bottom: var(--space-8);
+    margin: var(--space-6) auto 0;
+    max-width: 560px;
   }
 
   .contact-options {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
-    margin-bottom: var(--space-10);
+    height: 100%;
+    margin-bottom: 0;
   }
 
   .contact-option {
     display: flex;
     align-items: center;
     gap: var(--space-5);
+    flex: 1;
+    min-height: 178px;
     padding: var(--space-6);
     border: var(--border-thin);
     border-radius: var(--radius-md);
@@ -650,10 +682,55 @@ import Base from '../layouts/Base.astro';
 
   /* ── FORMULARIO ────────────────────────────── */
   .contact-form-wrap {
-    border: var(--border-thin);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 0;
     border-radius: var(--radius-md);
     padding: var(--space-8);
-    background: var(--color-cream);
+    background: var(--color-white);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .contact-form-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg),
+      rgba(200,154,60,0.10),
+      rgba(200,154,60,0.95),
+      rgba(255,255,255,0.20),
+      rgba(200,154,60,0.10)
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: contact-glow-spin 7s linear infinite;
+    pointer-events: none;
+  }
+
+  .contact-form-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle at 50% 0%, rgba(200,154,60,0.12), transparent 34%);
+    pointer-events: none;
+  }
+
+  .contact-form-header,
+  .contact__form {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes contact-glow-spin {
+    from { --glow-angle: 0deg; }
+    to { --glow-angle: 360deg; }
   }
 
   .contact-form-header { margin-bottom: var(--space-8); }
@@ -668,7 +745,7 @@ import Base from '../layouts/Base.astro';
 
   .contact-form-sub { font-size: var(--text-sm); color: var(--color-muted); line-height: 1.6; }
 
-  .contact__form { display: flex; flex-direction: column; gap: var(--space-5); }
+  .contact__form { display: flex; flex: 1; flex-direction: column; gap: var(--space-5); }
 
   .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
 
@@ -713,7 +790,11 @@ import Base from '../layouts/Base.astro';
 
   .form__textarea { resize: vertical; min-height: 100px; }
 
-  .form__submit { align-self: flex-start; margin-top: var(--space-2); }
+  .form__submit {
+    align-self: stretch;
+    justify-content: center;
+    margin-top: auto;
+  }
 
   /* ── SECTION SHARED ────────────────────────── */
   .section-header { max-width: 560px; margin-bottom: var(--space-12); }
@@ -729,10 +810,13 @@ import Base from '../layouts/Base.astro';
 
   /* ── RESPONSIVE ────────────────────────────── */
   @media (max-width: 1024px) {
-    .contact-cta__inner { grid-template-columns: 1fr; gap: var(--space-12); }
-    .contact-cta__header { position: static; }
     .expectations__inner { grid-template-columns: 1fr; gap: var(--space-12); }
     .process-step { grid-template-columns: 60px 1fr; gap: var(--space-6); padding: var(--space-8); }
+  }
+
+  @media (max-width: 860px) {
+    .contact-cta__inner { grid-template-columns: 1fr; gap: var(--space-10); }
+    .contact-option { min-height: auto; }
   }
 
   @media (max-width: 768px) {
@@ -756,11 +840,48 @@ import Base from '../layouts/Base.astro';
   @media (max-width: 900px) {
     .page-hero__inner--split { grid-template-columns: 1fr; }
     .page-hero__media { display: none; }
+    .page-hero__copy { padding-left: 0; }
   }
 
   /* ── CONV MEDIA BAND ──────────────────────── */
   .conv-media {
-    background: var(--color-navy);
     padding-block: var(--space-20) var(--space-12);
+  }
+
+  .page-hero-photo,
+  .conv-media__photo {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-soft);
+    box-shadow: var(--shadow-card);
+  }
+
+  .page-hero-photo {
+    aspect-ratio: 4 / 3;
+    border: 0.5px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+  }
+
+  .conv-media__photo {
+    aspect-ratio: 21 / 9;
+    border: var(--border-thin);
+  }
+
+  .page-hero-photo img,
+  .conv-media__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .page-hero-photo img { object-position: 50% 52%; }
+  .conv-media__photo img { object-position: 50% 50%; }
+
+  @media (min-width: 901px) {
+    .page-hero__inner--split {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+    }
   }
 </style>

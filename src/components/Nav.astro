@@ -1,28 +1,31 @@
 ---
 const links = [
+  { href: '/', label: 'Inicio' },
   { href: '/servicios', label: 'Servicios' },
   { href: '/nosotros', label: 'Nosotros' },
 ];
 const currentPath = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
 <header class="nav" id="nav">
   <div class="container nav__inner">
 
     <a href="/" class="nav__logo" aria-label="Grupo Castañeda — Inicio">
-      <span class="nav__logo-gc">GC</span>
-      <span class="nav__logo-sep" aria-hidden="true"></span>
-      <span class="nav__logo-text">
-        <span class="nav__logo-name">Grupo Castañeda</span>
-        <span class="nav__logo-sub">Outsourcing Contable</span>
-      </span>
+      <img
+        src="/logo-grupo-castaneda-white.png"
+        alt="Grupo Castañeda Outsourcing Contable"
+        class="nav__logo-img"
+        width="1080"
+        height="454"
+      />
     </a>
 
     <nav class="nav__links" aria-label="Navegación principal">
       {links.map(link => (
         <a
           href={link.href}
-          class:list={['nav__link', { 'nav__link--active': currentPath.startsWith(link.href) }]}
+          class:list={['nav__link', { 'nav__link--active': isActive(link.href) }]}
         >
           {link.label}
         </a>
@@ -72,53 +75,22 @@ const currentPath = Astro.url.pathname;
     display: flex;
     align-items: center;
     gap: var(--space-8);
-    height: 64px;
+    height: 108px;
   }
 
-  /* Logo */
   .nav__logo {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
     text-decoration: none;
     flex-shrink: 0;
   }
 
-  .nav__logo-gc {
-    font-family: var(--font-serif);
-    font-size: var(--text-lg);
-    font-weight: 500;
-    color: var(--color-white);
-    line-height: 1;
-  }
-
-  .nav__logo-sep {
-    width: 0.5px;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.25);
-  }
-
-  .nav__logo-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-
-  .nav__logo-name {
-    font-family: var(--font-sans);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-white);
-    letter-spacing: 0.02em;
-    line-height: 1;
-  }
-
-  .nav__logo-sub {
-    font-size: var(--text-xs);
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    line-height: 1;
+  .nav__logo-img {
+    display: block;
+    width: auto;
+    height: 92px;
+    max-width: 520px;
+    object-fit: contain;
   }
 
   /* Links */
@@ -166,6 +138,8 @@ const currentPath = Astro.url.pathname;
 
   /* CTA */
   .nav__cta {
+    position: relative;
+    isolation: isolate;
     padding: 10px 20px;
     font-size: var(--text-xs);
     background: transparent;
@@ -175,6 +149,43 @@ const currentPath = Astro.url.pathname;
   }
 
   .nav__cta:hover { background: rgba(255, 255, 255, 0.12); }
+
+  /* ── Brillo dorado girando alrededor de la caja (lineal y cíclico) ── */
+  @property --cta-glow {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  .nav__cta::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 4px;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--cta-glow),
+      transparent 0deg,
+      rgba(200, 154, 60, 0.12) 40deg,
+      var(--color-gold) 72deg,
+      #fff4d6 88deg,
+      var(--color-gold) 104deg,
+      transparent 150deg,
+      transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    filter: drop-shadow(0 0 3px rgba(200, 154, 60, 0.55));
+    animation: cta-orbit 2.8s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+  }
+  @keyframes cta-orbit { to { --cta-glow: 360deg; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav__cta::before { animation: none; }
+  }
 
   /* Burger */
   .nav__burger {
@@ -245,6 +256,11 @@ const currentPath = Astro.url.pathname;
 
     .nav__burger {
       display: flex;
+    }
+
+    .nav__logo-img {
+      height: 54px;
+      max-width: 300px;
     }
 
     .nav__mobile.is-open {
