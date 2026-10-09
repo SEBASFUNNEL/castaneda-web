@@ -2399,14 +2399,15 @@ const marqueeSectors = [...sectors, ...sectors];
     panelRoot.addEventListener('mouseenter', () => { paused = true; timer?.kill(); progressTween?.pause(); });
     panelRoot.addEventListener('mouseleave', () => { paused = false; progressTween?.resume(); schedule(); });
 
-    // Solo corre cuando el hero está en pantalla
+    // Solo corre mientras el hero (titular o panel) está en pantalla
+    const heroEl = panelRoot.closest('.hero') ?? panelRoot;
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) { paused = false; progressTween?.resume(); schedule(); }
         else { paused = true; timer?.kill(); progressTween?.pause(); }
       });
-    }, { threshold: 0.25 });
-    io.observe(panelRoot);
+    }, { threshold: 0.1 });
+    io.observe(heroEl);
 
     animateCounters(panels[0]);
     if (progress && !reduceMotion) {
