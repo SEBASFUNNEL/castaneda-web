@@ -1,15 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const videoUrl = 'https://www.instagram.com/grupocastanedaoc/reel/DY5fvdYjuWf/';
+const videoUrl = 'https://www.instagram.com/grupocastanedaoc/reel/DYiNz6sAiYl/';
 const sectors = [
   { label: 'Comercio y retail', icon: 'retail' },
-  { label: 'Servicios', icon: 'services' },
-  { label: 'Logística', icon: 'logistics' },
-  { label: 'Construcción', icon: 'construction' },
-  { label: 'Salud', icon: 'health' },
+  { label: 'Restaurantes y cafeterías', icon: 'food' },
+  { label: 'Servicios profesionales', icon: 'services' },
+  { label: 'Logística y courier', icon: 'logistics' },
+  { label: 'Construcción y licitaciones', icon: 'construction' },
+  { label: 'Salud y estética', icon: 'health' },
   { label: 'Tecnología', icon: 'technology' },
-  { label: 'Importación', icon: 'import' },
+  { label: 'Importación y distribución', icon: 'import' },
+  { label: 'Exportación', icon: 'import' },
   { label: 'Consultoría', icon: 'consulting' },
 ];
 const marqueeSectors = [...sectors, ...sectors];
@@ -17,49 +19,145 @@ const marqueeSectors = [...sectors, ...sectors];
 
 <Base
   title="Grupo Castañeda — Outsourcing Contable Integral en Lima"
-  description="Contabilidad, planillas, tesorería y tributación integradas. Tu empresa siempre al día, con información real para tomar decisiones. Lima, Perú."
+  description="Área contable completa para empresas: contabilidad, planillas, tesorería y tributación en un solo equipo, con pre-cierre mensual e informe gerencial. Más de 14 años y 150 empresas. Miraflores, Lima."
 >
 
   <!-- ══════════════════════════════════════════
        1. HERO — Qué hacemos, para quién, CTA
   ══════════════════════════════════════════ -->
-  <section class="hero">
-    <img
-      class="hero__bg"
-      src="/images/contador-oficina-lima.png"
-      alt=""
-      aria-hidden="true"
-      width="1120"
-      height="1408"
-      loading="eager"
-      decoding="async"
-    />
-    <div class="hero__overlay" aria-hidden="true"></div>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__mesh" aria-hidden="true"></div>
+    <svg class="hero__arcs" viewBox="0 0 900 900" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="gcArc" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#C89A3C" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#C89A3C" stop-opacity="0.6"/>
+          <stop offset="1" stop-color="#C89A3C" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <circle cx="620" cy="560" r="430" stroke="url(#gcArc)" stroke-width="0.8"/>
+      <ellipse cx="620" cy="560" rx="430" ry="150" stroke="url(#gcArc)" stroke-width="0.8"/>
+      <ellipse cx="620" cy="560" rx="150" ry="430" stroke="url(#gcArc)" stroke-width="0.8"/>
+      <ellipse cx="620" cy="560" rx="430" ry="150" stroke="url(#gcArc)" stroke-width="0.6" transform="rotate(-32 620 560)"/>
+      <ellipse cx="620" cy="560" rx="430" ry="150" stroke="url(#gcArc)" stroke-width="0.6" transform="rotate(32 620 560)"/>
+    </svg>
 
     <div class="container hero__inner">
       <div class="hero__content">
-        <span class="eyebrow" data-reveal>Outsourcing Contable Integral · Lima, Perú</span>
+        <span class="eyebrow" data-reveal>Outsourcing contable integral · Miraflores, Lima</span>
 
-        <h1 class="hero__heading" data-reveal>
-          <span class="hero__line">Tu empresa crece,</span>
-          <span class="hero__line">Deja tu <span class="hero__rotator" aria-hidden="true"><span class="hero__rotator-list"><span class="hero__rotator-word">contabilidad</span><span class="hero__rotator-word">planilla</span><span class="hero__rotator-word">tributación</span><span class="hero__rotator-word">contabilidad</span></span></span><span class="hero__sr-only"> contabilidad, planilla y tributación</span></span>
-          <span class="hero__line">en manos de expertos</span>
+        <h1 class="hero__heading" id="hero-heading" data-reveal>
+          <span class="hero__line">Tu contador te dice</span>
+          <span class="hero__line">cuánto declaras.</span>
+          <span class="hero__line hero__line--ask">¿Quién te dice</span>
+          <span class="hero__line hero__rotator" aria-live="off"><em class="hero__rotator-word" id="heroWord">cuánto ganas?</em></span>
         </h1>
 
         <p class="hero__sub" data-reveal>
-          Mientras tú haces crecer tu negocio, nosotros llevamos tu contabilidad,
-          planillas y tributación como un área completa que se anticipa a los
-          problemas y te entrega información real para decidir.
+          Somos el área contable completa de tu empresa: contabilidad, planillas,
+          tesorería y tributación en un solo equipo. Pre-cierre cada mes, alertas antes
+          de cada vencimiento y un informe gerencial que sí se entiende.
         </p>
 
         <div class="hero__actions" data-reveal>
           <a href="/conversemos" class="btn btn--primary">
-            Conversemos
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            Agendar un diagnóstico
           </a>
-          <a href="/servicios" class="btn btn--outline hero__btn-outline">Ver servicios</a>
+          <a href="/servicios" class="btn btn--outline hero__btn-outline">Ver las cuatro áreas</a>
+        </div>
+      </div>
+
+      <div class="hero__media" data-reveal>
+        <div class="gcp" id="gcPanel" aria-label="Ejemplo de informe mensual de Grupo Castañeda">
+          <div class="gcp__head">
+            <span class="gcp__brand"><span class="gcp__mark" aria-hidden="true">GC</span>Informe gerencial · octubre</span>
+            <span class="gcp__live"><span class="gcp__dot" aria-hidden="true"></span>Al día</span>
+          </div>
+
+          <div class="gcp__tabs" role="tablist" aria-label="Áreas del informe">
+            <button class="gcp__tab is-active" type="button" role="tab" data-tab="0" aria-selected="true">Contabilidad</button>
+            <button class="gcp__tab" type="button" role="tab" data-tab="1" aria-selected="false">Planillas</button>
+            <button class="gcp__tab" type="button" role="tab" data-tab="2" aria-selected="false">Tesorería</button>
+            <button class="gcp__tab" type="button" role="tab" data-tab="3" aria-selected="false">Tributación</button>
+            <span class="gcp__progress" id="gcProgress" aria-hidden="true"></span>
+          </div>
+
+          <div class="gcp__body">
+
+            <div class="gcp__panel is-active" data-panel="0" role="tabpanel">
+              <div class="gcp__kpi">
+                <span class="gcp__kpi-label">Utilidad neta · setiembre</span>
+                <span class="gcp__kpi-num">S/ <span data-gc-count="48320">48,320</span></span>
+                <span class="gcp__kpi-delta gcp__kpi-delta--up">▲ 12 % frente a agosto</span>
+              </div>
+              <div class="gcp__chart gcp__bars" aria-hidden="true">
+                <div class="gcp__bargroup" style="--v:46%;--g:38%"><i>Abr</i></div>
+                <div class="gcp__bargroup" style="--v:54%;--g:41%"><i>May</i></div>
+                <div class="gcp__bargroup" style="--v:50%;--g:44%"><i>Jun</i></div>
+                <div class="gcp__bargroup" style="--v:63%;--g:46%"><i>Jul</i></div>
+                <div class="gcp__bargroup" style="--v:70%;--g:49%"><i>Ago</i></div>
+                <div class="gcp__bargroup is-current" style="--v:82%;--g:52%"><i>Set</i></div>
+              </div>
+              <ul class="gcp__rows">
+                <li class="gcp__row gcp__row--ok">Pre-cierre revisado antes de declarar</li>
+                <li class="gcp__row gcp__row--ok">Estados financieros entregados el día 8</li>
+              </ul>
+            </div>
+
+            <div class="gcp__panel" data-panel="1" role="tabpanel" hidden>
+              <div class="gcp__kpi">
+                <span class="gcp__kpi-label">Trabajadores en planilla</span>
+                <span class="gcp__kpi-num"><span data-gc-count="12">12</span></span>
+                <span class="gcp__kpi-delta">PLAME de setiembre presentado</span>
+              </div>
+              <div class="gcp__chart gcp__people" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span class="is-warn"></span><span class="is-warn"></span>
+              </div>
+              <ul class="gcp__rows">
+                <li class="gcp__row gcp__row--ok">CTS y gratificación provisionadas</li>
+                <li class="gcp__row gcp__row--ok">AFP, ONP y EsSalud al día</li>
+                <li class="gcp__row gcp__row--warn">2 contratos vencen el 31 de octubre</li>
+              </ul>
+            </div>
+
+            <div class="gcp__panel" data-panel="2" role="tabpanel" hidden>
+              <div class="gcp__kpi">
+                <span class="gcp__kpi-label">Caja proyectada a 30 días</span>
+                <span class="gcp__kpi-num">S/ <span data-gc-count="96400">96,400</span></span>
+                <span class="gcp__kpi-delta">Cubre planilla, proveedores e impuestos</span>
+              </div>
+              <div class="gcp__chart gcp__line" aria-hidden="true">
+                <svg viewBox="0 0 320 90" preserveAspectRatio="none">
+                  <line x1="0" y1="62" x2="320" y2="62" class="gcp__line-base"/>
+                  <path class="gcp__line-area" d="M0 50 C 30 44, 50 58, 80 52 S 130 30, 160 38 S 210 70, 240 60 S 290 22, 320 26 L320 90 L0 90 Z"/>
+                  <path class="gcp__line-path" d="M0 50 C 30 44, 50 58, 80 52 S 130 30, 160 38 S 210 70, 240 60 S 290 22, 320 26"/>
+                  <circle class="gcp__line-dot" cx="240" cy="60" r="3.5"/>
+                </svg>
+                <div class="gcp__line-weeks"><i>Sem 1</i><i>Sem 2</i><i>Sem 3</i><i>Sem 4</i></div>
+              </div>
+              <ul class="gcp__rows">
+                <li class="gcp__row gcp__row--ok">Conciliación bancaria cerrada</li>
+                <li class="gcp__row gcp__row--warn">Semana 3 ajustada: 2 pagos reprogramados</li>
+              </ul>
+            </div>
+
+            <div class="gcp__panel" data-panel="3" role="tabpanel" hidden>
+              <div class="gcp__alert">
+                <span class="gcp__alert-kicker">Dinero detenido</span>
+                <span class="gcp__alert-num">S/ <span data-gc-count="12540">12,540</span></span>
+                <span class="gcp__alert-text">en tu cuenta de detracciones. Ya se solicitó la liberación.</span>
+                <span class="gcp__alert-link">Ver solicitud →</span>
+              </div>
+              <ul class="gcp__rows">
+                <li class="gcp__row gcp__row--ok">PDT 621 de setiembre presentado</li>
+                <li class="gcp__row gcp__row--ok">Carta inductiva de SUNAT respondida</li>
+                <li class="gcp__row gcp__row--ok">Registro SIRE conciliado</li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="gcp__foot">Datos ilustrativos · así se ve un mes con Grupo Castañeda</div>
         </div>
       </div>
     </div>
@@ -67,7 +165,7 @@ const marqueeSectors = [...sectors, ...sectors];
     <div class="hero__stats-strip" aria-label="Cifras clave">
       <div class="container hero__stats-inner" data-stagger>
         <div class="hero__stat">
-          <span class="hero__stat-num" data-counter="10" data-suffix="+">0</span>
+          <span class="hero__stat-num" data-counter="14" data-suffix="+">0</span>
           <span class="hero__stat-label">Años de experiencia</span>
         </div>
         <div class="hero__stat-divider" aria-hidden="true"></div>
@@ -78,12 +176,12 @@ const marqueeSectors = [...sectors, ...sectors];
         <div class="hero__stat-divider" aria-hidden="true"></div>
         <div class="hero__stat">
           <span class="hero__stat-num" data-counter="4">0</span>
-          <span class="hero__stat-label">Áreas integradas</span>
+          <span class="hero__stat-label">Áreas en un solo equipo</span>
         </div>
         <div class="hero__stat-divider" aria-hidden="true"></div>
         <div class="hero__stat">
-          <span class="hero__stat-num" data-counter="98" data-suffix="%">0</span>
-          <span class="hero__stat-label">Satisfacción de clientes</span>
+          <span class="hero__stat-num" data-counter="24" data-suffix="h">0</span>
+          <span class="hero__stat-label">Respuesta en el día</span>
         </div>
       </div>
     </div>
@@ -143,7 +241,7 @@ const marqueeSectors = [...sectors, ...sectors];
 
       <div class="sectors__header" data-reveal>
         <h2 class="sectors__title" id="sectors-heading">
-          Acompañamos a empresas en todos los rubros del Perú y del mundo
+          Más de 150 empresas, del Perú y del extranjero, en todos los rubros
         </h2>
       </div>
 
@@ -194,6 +292,12 @@ const marqueeSectors = [...sectors, ...sectors];
                     <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.2"/>
                   </svg>
                 )}
+                {icon === 'food' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 8h12v6a5 5 0 01-5 5h-2a5 5 0 01-5-5V8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                    <path d="M16 10h2a2 2 0 010 4h-2M7 4v2M10 3v3M13 4v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                )}
                 {icon === 'consulting' && (
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/>
@@ -237,8 +341,9 @@ const marqueeSectors = [...sectors, ...sectors];
           </div>
           <h3 class="problem-card__label">No es solo declarar a fin de mes</h3>
           <p class="problem-card__text">
-            Solo recibes declaraciones una vez al mes. Nunca un análisis,
-            nunca una alerta, nunca un "ojo con esto".
+            Un mal contador solo declara. Un buen contador te ayuda a prevenir
+            problemas, ordenar tu empresa y tomar mejores decisiones. Si el tuyo
+            solo aparece a fin de mes, estás pagando por la mitad del trabajo.
           </p>
         </div>
 
@@ -251,8 +356,9 @@ const marqueeSectors = [...sectors, ...sectors];
           </div>
           <h3 class="problem-card__label">Un verdadero control</h3>
           <p class="problem-card__text">
-            No sabes realmente si tu empresa está bien. Tomas decisiones
-            de inversión, contratación o crédito sin información confiable.
+            Un mal contador espera al cierre para encontrar problemas. Nosotros
+            hacemos un pre-cierre cada mes: revisamos tu información antes de
+            declarar, no después, y te decimos cómo está tu empresa de verdad.
           </p>
         </div>
 
@@ -266,10 +372,82 @@ const marqueeSectors = [...sectors, ...sectors];
           </div>
           <h3 class="problem-card__label">El aliado para el éxito</h3>
           <p class="problem-card__text">
-            Mereces un equipo contable que trabaje para tu empresa,
-            no solo para cumplir con SUNAT.
+            SUNAT ya mira tus ventas por redes, Yape y Plin, y una fiscalización
+            no empieza con una visita: empieza con un mensaje en tu buzón
+            electrónico. Mereces un equipo que lo lea antes que tú.
           </p>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       3b. TRES CASOS — Precalificación por problema
+  ══════════════════════════════════════════ -->
+  <section class="section segments" aria-labelledby="segments-heading">
+    <div class="container">
+
+      <div class="section-header section-header--center" data-reveal>
+        <span class="eyebrow">¿Cuál es tu caso?</span>
+        <h2 class="section-title" id="segments-heading">
+          Tres situaciones que vemos<br>todas las semanas.
+        </h2>
+        <div class="gold-line" style="margin-inline: auto;"></div>
+      </div>
+
+      <div class="segments__grid" data-stagger>
+
+        <article class="segment">
+          <span class="segment__num" aria-hidden="true">01</span>
+          <h3 class="segment__title">Tu empresa crece y decides a ciegas</h3>
+          <p class="segment__quote">“Tu contador te dice cuánto declaras. ¿Quién te dice cuánto ganas?”</p>
+          <p class="segment__desc">
+            Cumples, declaras y nada parece roto. Pero nadie te entrega un informe con tu
+            margen real, tu utilidad y hacia dónde va la caja. Servicio integral con
+            informe gerencial cada mes.
+          </p>
+          <a
+            class="segment__cta"
+            href="https://wa.me/51969357784?text=Hola%2C%20quiero%20ver%20los%20n%C3%BAmeros%20reales%20de%20mi%20empresa%20(informe%20gerencial)."
+            target="_blank"
+            rel="noopener noreferrer"
+          >Quiero ver mis números reales →</a>
+        </article>
+
+        <article class="segment">
+          <span class="segment__num" aria-hidden="true">02</span>
+          <h3 class="segment__title">Tienes equipo, no tienes respaldo</h3>
+          <p class="segment__quote">“Un mensaje fuera de horario puede terminar en un reclamo de horas extras.”</p>
+          <p class="segment__desc">
+            Contratas, amonestas y despides sin documentar, y cada contrato vencido es un
+            riesgo ante SUNAFIL. Planillas con asesoría laboral preventiva: contratos al
+            día, beneficios bien calculados y respuesta ante una inspección.
+          </p>
+          <a
+            class="segment__cta"
+            href="https://wa.me/51969357784?text=Hola%2C%20tengo%20trabajadores%20en%20planilla%20y%20quiero%20respaldo%20laboral."
+            target="_blank"
+            rel="noopener noreferrer"
+          >Quiero ordenar mi planilla →</a>
+        </article>
+
+        <article class="segment segment--alert">
+          <span class="segment__num" aria-hidden="true">03</span>
+          <h3 class="segment__title">Tienes dinero detenido en SUNAT</h3>
+          <p class="segment__quote">“¿Sabes cuánto dinero tuyo está detenido en SUNAT ahora mismo?”</p>
+          <p class="segment__desc">
+            Saldo inmovilizado en detracciones, una devolución que nadie pidió o una
+            notificación en el buzón que nadie leyó. Liberación de detracciones,
+            devoluciones y acompañamiento en fiscalizaciones.
+          </p>
+          <a
+            class="segment__cta"
+            href="https://wa.me/51969357784?text=Hola%2C%20quiero%20saber%20cu%C3%A1nto%20dinero%20tengo%20detenido%20en%20SUNAT%20(detracciones%20o%20devoluciones)."
+            target="_blank"
+            rel="noopener noreferrer"
+          >Quiero recuperar ese dinero →</a>
+        </article>
 
       </div>
     </div>
@@ -326,7 +504,7 @@ const marqueeSectors = [...sectors, ...sectors];
             <path d="M9 2L2 5.5v4C2 13.1 5.1 16.4 9 17.2c3.9-.8 7-4.1 7-7.7v-4L9 2z" stroke="currentColor" stroke-width="1.2"/>
             <path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span>Pérdida de tiempo gerencial resolviendo problemas contables</span>
+          <span>Dinero inmovilizado en detracciones que nadie pide liberar</span>
         </div>
         <div class="stakes__item">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -358,10 +536,10 @@ const marqueeSectors = [...sectors, ...sectors];
       <div class="guide__credentials" data-stagger>
 
         <div class="credential">
-          <span class="credential__num" data-counter="10" data-suffix="+">10+</span>
+          <span class="credential__num" data-counter="14" data-suffix="+">14+</span>
           <div>
             <strong class="credential__title">Años de experiencia</strong>
-            <p class="credential__desc">Más de una década acompañando a empresas desde su organización inicial hasta etapas de consolidación y crecimiento sostenido.</p>
+            <p class="credential__desc">Catorce años acompañando empresas desde su formalización hasta etapas de consolidación y crecimiento sostenido.</p>
           </div>
         </div>
 
@@ -369,7 +547,7 @@ const marqueeSectors = [...sectors, ...sectors];
           <span class="credential__num" data-counter="150" data-suffix="+">150+</span>
           <div>
             <strong class="credential__title">Empresas atendidas</strong>
-            <p class="credential__desc">Experiencia con compañías de sectores como comercio, servicios, logística, tecnología, construcción e importación.</p>
+            <p class="credential__desc">Clientes nacionales e internacionales: comercio, restaurantes, salud, tecnología, logística, construcción e importación.</p>
           </div>
         </div>
 
@@ -432,8 +610,9 @@ const marqueeSectors = [...sectors, ...sectors];
           <div class="plan__connector" aria-hidden="true"></div>
           <h3 class="plan__step-title">Diseñamos tu esquema</h3>
           <p class="plan__step-desc">
-            Definimos las áreas que necesitas, hacemos la transición ordenada
-            desde tu contador o estudio anterior, y ponemos todo al día.
+            Definimos las áreas que necesitas y revisamos el periodo que dejó tu
+            contador anterior: en una fiscalización, lo no corregido también pesa.
+            Luego ponemos todo al día.
           </p>
         </div>
 
@@ -441,8 +620,8 @@ const marqueeSectors = [...sectors, ...sectors];
           <div class="plan__step-num" aria-hidden="true">03</div>
           <h3 class="plan__step-title">Tu empresa, siempre al día</h3>
           <p class="plan__step-desc">
-            A partir de ese momento tienes un equipo dedicado, alertas preventivas,
-            reportes mensuales y respuesta garantizada en el día.
+            Desde ahí tienes un equipo dedicado, pre-cierre cada mes, alertas antes
+            de cada vencimiento, un informe gerencial y respuesta en el día.
           </p>
         </div>
 
@@ -488,7 +667,7 @@ const marqueeSectors = [...sectors, ...sectors];
             </svg>
           </div>
           <h3 class="service-card__title">Contabilidad</h3>
-          <p class="service-card__desc">Registro riguroso, estados financieros reales y análisis mensual que te permite decidir con datos.</p>
+          <p class="service-card__desc">Registro riguroso, pre-cierre mensual antes de declarar y estados financieros que te permiten decidir con datos.</p>
           <span class="service-card__tag">NIIF / PCGE</span>
         </div>
 
@@ -500,7 +679,7 @@ const marqueeSectors = [...sectors, ...sectors];
             </svg>
           </div>
           <h3 class="service-card__title">Planillas</h3>
-          <p class="service-card__desc">Cálculo de remuneraciones, AFP/ONP, gratificaciones, CTS y presentación puntual ante SUNAT.</p>
+          <p class="service-card__desc">Remuneraciones, AFP/ONP, CTS y PLAME, más asesoría laboral preventiva: contratos, horas extras y SUNAFIL.</p>
           <span class="service-card__tag">T-Registro / PLM</span>
         </div>
 
@@ -513,7 +692,7 @@ const marqueeSectors = [...sectors, ...sectors];
             </svg>
           </div>
           <h3 class="service-card__title">Tesorería</h3>
-          <p class="service-card__desc">Control de flujo de caja, conciliaciones bancarias y alertas preventivas de liquidez.</p>
+          <p class="service-card__desc">Flujo de caja proyectado, conciliaciones bancarias, alertas de liquidez y sustento para cartas fianza.</p>
           <span class="service-card__tag">Flujo de caja</span>
         </div>
 
@@ -525,7 +704,7 @@ const marqueeSectors = [...sectors, ...sectors];
             </svg>
           </div>
           <h3 class="service-card__title">Tributación</h3>
-          <p class="service-card__desc">Planificación tributaria, declaraciones, atención de fiscalizaciones y estrategias para reducir la carga fiscal.</p>
+          <p class="service-card__desc">Planificación tributaria, PDT 621 y SIRE, fiscalizaciones, liberación de detracciones y devoluciones.</p>
           <span class="service-card__tag">SUNAT / PDT</span>
         </div>
 
@@ -586,7 +765,7 @@ const marqueeSectors = [...sectors, ...sectors];
           </div>
           <div>
             <h3 class="benefit__title">Alertas preventivas</h3>
-            <p class="benefit__desc">Te avisamos antes de vencimientos, contingencias y riesgos de liquidez.</p>
+            <p class="benefit__desc">Te avisamos antes de vencimientos, contingencias y riesgos de liquidez. Un mensaje de SUNAT nunca más se queda sin leer.</p>
           </div>
         </div>
 
@@ -609,8 +788,8 @@ const marqueeSectors = [...sectors, ...sectors];
             </svg>
           </div>
           <div>
-            <h3 class="benefit__title">Fee fijo sin sorpresas</h3>
-            <p class="benefit__desc">Un precio mensual que incluye todo. Sin cobros extra por declaraciones adicionales.</p>
+            <h3 class="benefit__title">Propuesta a tu medida</h3>
+            <p class="benefit__desc">La cotizamos según tu facturación y tu planilla, con todo incluido. Sin cobros por cada declaración adicional.</p>
           </div>
         </div>
 
@@ -640,8 +819,8 @@ const marqueeSectors = [...sectors, ...sectors];
           Todo inicia por<br>un diagnóstico.
         </h2>
         <p class="cta-final__sub">
-          Cuéntanos sobre tu empresa por WhatsApp. Te respondemos antes de las 24 horas
-          y te orientamos con el siguiente paso.
+          Cuéntanos tu caso por WhatsApp. Te respondemos antes de las 24 horas hábiles
+          y te decimos con honestidad cuál es el siguiente paso.
         </p>
         <div class="cta-final__actions">
           <a
@@ -667,7 +846,7 @@ const marqueeSectors = [...sectors, ...sectors];
   /* ── HERO ─────────────────────────────────── */
   .hero {
     background: var(--color-navy);
-    padding-top: calc(108px + var(--space-24));
+    padding-top: calc(108px + var(--space-16));
     position: relative;
     overflow: hidden;
     display: flex;
@@ -675,47 +854,70 @@ const marqueeSectors = [...sectors, ...sectors];
     min-height: 100vh;
   }
 
-  .hero__bg {
-    position: absolute;
-    inset: 0 -7vw 0 0;
-    width: calc(100% + 7vw);
-    height: 100%;
-    object-fit: cover;
-    object-position: 82% center;
-    z-index: 0;
-  }
-
-  .hero__overlay {
+  /* Retícula editorial muy tenue (sistema gráfico: composición basada en retículas) */
+  .hero__mesh {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to right,
-      rgba(26, 43, 74, 0.97) 0%,
-      rgba(26, 43, 74, 0.92) 34%,
-      rgba(26, 43, 74, 0.58) 58%,
-      rgba(26, 43, 74, 0.16) 78%,
-      rgba(26, 43, 74, 0.0) 100%
-    );
-    z-index: 1;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.045) 0.5px, transparent 0.5px),
+      linear-gradient(90deg, rgba(255,255,255,0.045) 0.5px, transparent 0.5px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 60% 45%, #000 20%, transparent 100%);
+            mask-image: radial-gradient(ellipse 70% 80% at 60% 45%, #000 20%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero__mesh::after {
+    content: '';
+    position: absolute;
+    right: -10vw;
+    top: 10%;
+    width: 56vw;
+    height: 70%;
+    background: radial-gradient(closest-side, rgba(200,154,60,0.16), transparent 72%);
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  /* Arcos del globo (motivo del logo) girando muy despacio */
+  .hero__arcs {
+    position: absolute;
+    right: -14vw;
+    top: 50%;
+    width: clamp(560px, 62vw, 980px);
+    height: auto;
+    transform: translateY(-50%);
+    z-index: 0;
+    opacity: 0.75;
+    pointer-events: none;
+    animation: hero-arcs-spin 90s linear infinite;
+    transform-origin: 68.9% 62.2%;
+  }
+
+  @keyframes hero-arcs-spin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to   { transform: translateY(-50%) rotate(360deg); }
   }
 
   .hero__inner {
     flex: 1;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+    gap: clamp(var(--space-10), 5vw, var(--space-20));
     align-items: center;
-    padding-bottom: var(--space-20);
+    padding-bottom: var(--space-16);
     position: relative;
     z-index: 2;
   }
 
-  .hero__content { max-width: 600px; margin-left: clamp(-150px, -10vw, -96px); }
-  @media (max-width: 768px) { .hero__content { margin-left: 0; } }
+  .hero__content { max-width: 620px; }
 
   .hero__content .eyebrow { color: var(--color-gold); }
 
   .hero__heading {
     font-family: var(--font-serif);
-    font-size: clamp(var(--text-3xl), 5.5vw, var(--text-5xl));
+    font-size: clamp(2.5rem, 4.6vw, 3.75rem);
     font-weight: 400;
     color: var(--color-white);
     line-height: 1.1;
@@ -726,69 +928,39 @@ const marqueeSectors = [...sectors, ...sectors];
 
   .hero__heading em { font-style: italic; color: var(--color-gold); }
 
-  /* Cada línea es un bloque que nunca se parte → siempre 3 filas, a cualquier ancho */
-  .hero__line { display: block; white-space: nowrap; }
+  .hero__line { display: block; }
+  .hero__line--ask { margin-top: 0.35em; }
 
-  /* ── Carrusel vertical de palabras (contabilidad / planilla / tributación) ── */
+  /* La pregunta cambia en sincronía con la pestaña del informe */
   .hero__rotator {
-    display: inline-block;
-    height: 1.15em;
-    line-height: 1.15;
-    overflow: hidden;
-    vertical-align: bottom;
-    white-space: nowrap;
-    width: 5.35em;
-    /* Recorte mínimo (en em, seguro a cualquier tamaño) para que no asome la palabra vecina */
-    -webkit-clip-path: inset(0.06em 0);
-            clip-path: inset(0.06em 0);
-  }
-
-  .hero__rotator-list {
-    display: block;
-    animation: hero-rotate-y 9s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+    position: relative;
+    min-height: 1.15em;
+    font-size: 0.9em;
+    line-height: 1.2;
   }
 
   .hero__rotator-word {
-    display: block;
-    height: 1.15em;
-    line-height: 1.15;
+    display: inline-block;
     font-style: italic;
     color: var(--color-gold);
+    will-change: transform, opacity;
   }
 
-  /* Desplazamiento vertical de la palabra */
-  @keyframes hero-rotate-y {
-    0%, 21%    { transform: translateY(0); }
-    25%, 46%   { transform: translateY(-1.15em); }
-    50%, 71%   { transform: translateY(-2.30em); }
-    75%, 100%  { transform: translateY(-3.45em); }
-  }
-
-  /* Ancho fijo del rotator: la palabra solo se desplaza en vertical (sin baile horizontal) */
-
-  .hero__sr-only {
-    position: absolute;
-    width: 1px;
+  .hero__rotator-word::after {
+    content: '';
+    display: block;
     height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero__rotator-list,
-    .hero__rotator { animation: none; }
+    margin-top: 0.12em;
+    background: linear-gradient(90deg, var(--color-gold), transparent);
+    opacity: 0.6;
   }
 
   .hero__sub {
     font-size: var(--text-base);
     line-height: 1.7;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.68);
     max-width: 520px;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-8);
   }
 
   .hero__actions { display: flex; gap: var(--space-4); flex-wrap: wrap; }
@@ -804,7 +976,7 @@ const marqueeSectors = [...sectors, ...sectors];
     border-color: rgba(255,255,255,0.45);
   }
 
-  /* ── Brillo dorado girando alrededor de "Conversemos" (igual que el nav) ── */
+  /* ── Brillo dorado girando alrededor del CTA principal (igual que el nav) ── */
   .hero__actions .btn--primary,
   .videoint__btn {
     position: relative;
@@ -846,9 +1018,368 @@ const marqueeSectors = [...sectors, ...sectors];
 
   @keyframes hero-cta-orbit { to { --hero-cta-glow: 360deg; } }
 
+  /* ── Panel «Informe gerencial» ───────────── */
+  .hero__media { width: 100%; justify-self: end; max-width: 520px; }
+
+  .gcp {
+    background: var(--color-white);
+    color: var(--color-text);
+    border-radius: var(--radius-lg);
+    border: 0.5px solid rgba(255,255,255,0.35);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.4) inset,
+      0 30px 80px rgba(0,0,0,0.35),
+      0 0 0 1px rgba(200,154,60,0.18);
+    overflow: hidden;
+    transform: perspective(1400px) rotateY(-4deg) rotateX(1.5deg);
+    transition: transform 600ms var(--ease-out-expo), box-shadow 600ms var(--ease-out-expo);
+  }
+
+  .gcp:hover {
+    transform: perspective(1400px) rotateY(0deg) rotateX(0deg);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.4) inset,
+      0 36px 90px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(200,154,60,0.3);
+  }
+
+  .gcp__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .gcp__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-serif);
+    font-size: var(--text-md);
+    letter-spacing: 0.01em;
+  }
+
+  .gcp__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(200,154,60,0.7);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-gold);
+  }
+
+  .gcp__live {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .gcp__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    box-shadow: 0 0 0 0 rgba(200,154,60,0.6);
+    animation: gcp-pulse 2.4s ease-out infinite;
+  }
+
+  @keyframes gcp-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(200,154,60,0.55); }
+    70%  { box-shadow: 0 0 0 9px rgba(200,154,60,0); }
+    100% { box-shadow: 0 0 0 0 rgba(200,154,60,0); }
+  }
+
+  .gcp__tabs {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 0.5px solid var(--color-line);
+    background: var(--color-soft);
+  }
+
+  .gcp__tab {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: var(--space-3) var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: color var(--transition-fast), background var(--transition-fast);
+  }
+
+  .gcp__tab:hover { color: var(--color-navy); }
+  .gcp__tab.is-active { color: var(--color-navy); background: var(--color-white); }
+
+  .gcp__progress {
+    position: absolute;
+    left: 0;
+    bottom: -0.5px;
+    height: 2px;
+    width: 25%;
+    background: var(--color-gold);
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+
+  .gcp__body { position: relative; padding: var(--space-6); min-height: 300px; }
+
+  .gcp__panel { display: none; }
+  .gcp__panel.is-active { display: block; }
+
+  .gcp__kpi { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--space-5); }
+
+  .gcp__kpi-label {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .gcp__kpi-num {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    line-height: 1.05;
+    color: var(--color-navy);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gcp__kpi-delta { font-size: var(--text-sm); color: var(--color-muted); }
+  .gcp__kpi-delta--up { color: #2F6B3A; }
+
+  .gcp__chart { margin-bottom: var(--space-5); }
+
+  /* Barras: ventas (azul) y gastos (arena), crecen al entrar */
+  .gcp__bars {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-3);
+    align-items: end;
+    height: 104px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--color-line);
+    position: relative;
+  }
+
+  .gcp__bargroup {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .gcp__bargroup::before,
+  .gcp__bargroup::after {
+    content: '';
+    display: block;
+    width: 38%;
+    border-radius: 2px 2px 0 0;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    animation: gcp-grow 0.9s var(--ease-out-expo) forwards;
+  }
+
+  .gcp__bargroup::before { height: var(--v); background: var(--color-navy); animation-delay: var(--d, 0s); }
+  .gcp__bargroup::after  { height: var(--g); background: #E5E0D6; animation-delay: calc(var(--d, 0s) + 0.08s); }
+  .gcp__bargroup.is-current::before { background: var(--color-gold); }
+
+  .gcp__bargroup i {
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    right: 0;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    text-align: center;
+  }
+
+  .gcp__bargroup:nth-child(1) { --d: 0.05s; }
+  .gcp__bargroup:nth-child(2) { --d: 0.12s; }
+  .gcp__bargroup:nth-child(3) { --d: 0.19s; }
+  .gcp__bargroup:nth-child(4) { --d: 0.26s; }
+  .gcp__bargroup:nth-child(5) { --d: 0.33s; }
+  .gcp__bargroup:nth-child(6) { --d: 0.40s; }
+
+  @keyframes gcp-grow { to { transform: scaleY(1); } }
+
+  /* Planilla: 12 personas, 2 con contrato por vencer */
+  .gcp__people {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 6px;
+    padding-bottom: var(--space-4);
+    border-bottom: 0.5px solid var(--color-line);
+  }
+
+  .gcp__people span {
+    display: block;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-navy);
+    opacity: 0;
+    transform: scale(0.6);
+    animation: gcp-pop 0.5s var(--ease-out-expo) forwards;
+  }
+
+  .gcp__people span.is-warn { background: var(--color-gold); }
+
+  .gcp__people span:nth-child(n)  { animation-delay: calc(var(--i, 0) * 0.05s); }
+  .gcp__people span:nth-child(1)  { --i: 1; }  .gcp__people span:nth-child(2)  { --i: 2; }
+  .gcp__people span:nth-child(3)  { --i: 3; }  .gcp__people span:nth-child(4)  { --i: 4; }
+  .gcp__people span:nth-child(5)  { --i: 5; }  .gcp__people span:nth-child(6)  { --i: 6; }
+  .gcp__people span:nth-child(7)  { --i: 7; }  .gcp__people span:nth-child(8)  { --i: 8; }
+  .gcp__people span:nth-child(9)  { --i: 9; }  .gcp__people span:nth-child(10) { --i: 10; }
+  .gcp__people span:nth-child(11) { --i: 11; } .gcp__people span:nth-child(12) { --i: 12; }
+
+  @keyframes gcp-pop { to { opacity: 1; transform: scale(1); } }
+
+  /* Tesorería: la línea del flujo se dibuja */
+  .gcp__line svg { display: block; width: 100%; height: 96px; overflow: visible; }
+  .gcp__line-base { stroke: var(--color-line); stroke-width: 1; }
+  .gcp__line-area { fill: rgba(200,154,60,0.10); opacity: 0; animation: gcp-fade 0.8s 0.9s forwards; }
+  .gcp__line-path {
+    fill: none;
+    stroke: var(--color-navy);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 420;
+    animation: gcp-draw 1.5s var(--ease-out-quart) forwards;
+  }
+  .gcp__line-dot { fill: var(--color-terra); opacity: 0; animation: gcp-fade 0.4s 1.3s forwards; }
+  .gcp__line-weeks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    padding-bottom: var(--space-3);
+    border-bottom: 0.5px solid var(--color-line);
+  }
+  .gcp__line-weeks i {
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  @keyframes gcp-draw { to { stroke-dashoffset: 0; } }
+  @keyframes gcp-fade { to { opacity: 1; } }
+
+  /* Tributación: módulo de alerta en terracota (libro de marca) */
+  .gcp__alert {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-md);
+    background: var(--color-terra);
+    color: var(--color-white);
+    margin-bottom: var(--space-5);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: gcp-rise 0.6s var(--ease-out-expo) 0.1s forwards;
+  }
+
+  .gcp__alert-kicker {
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .gcp__alert-num {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gcp__alert-text { font-size: var(--text-sm); color: rgba(255,255,255,0.9); }
+  .gcp__alert-link { font-size: var(--text-sm); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; margin-top: 2px; }
+
+  @keyframes gcp-rise { to { opacity: 1; transform: translateY(0); } }
+
+  .gcp__rows { list-style: none; display: flex; flex-direction: column; }
+
+  .gcp__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    border-bottom: 0.5px solid var(--color-line);
+    opacity: 0;
+    transform: translateY(6px);
+    animation: gcp-rise 0.5s var(--ease-out-expo) forwards;
+  }
+
+  .gcp__row:nth-child(1) { animation-delay: 0.55s; }
+  .gcp__row:nth-child(2) { animation-delay: 0.70s; }
+  .gcp__row:nth-child(3) { animation-delay: 0.85s; }
+  .gcp__row:last-child { border-bottom: 0; }
+
+  .gcp__row::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px;
+  }
+
+  .gcp__row--ok::before {
+    background-color: rgba(200,154,60,0.18);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-4.8' stroke='%23C89A3C' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .gcp__row--warn { color: var(--color-terra); }
+  .gcp__row--warn::before {
+    background-color: rgba(184,92,58,0.12);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M6 2.5v4.2' stroke='%23B85C3A' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='6' cy='9.2' r='0.9' fill='%23B85C3A'/%3E%3C/svg%3E");
+  }
+
+  .gcp__foot {
+    padding: var(--space-3) var(--space-6);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    background: var(--color-soft);
+    border-top: 0.5px solid var(--color-line);
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    .hero__arcs,
+    .gcp__dot,
     .hero__actions .btn--primary::before,
     .videoint__btn::before { animation: none; }
+    .gcp { transform: none; }
+    .gcp__bargroup::before, .gcp__bargroup::after { animation: none; transform: scaleY(1); }
+    .gcp__people span, .gcp__row, .gcp__alert, .gcp__line-area, .gcp__line-dot { animation: none; opacity: 1; transform: none; }
+    .gcp__line-path { animation: none; stroke-dashoffset: 0; }
   }
 
   .hero__stats-strip {
@@ -889,7 +1420,7 @@ const marqueeSectors = [...sectors, ...sectors];
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.4);
-    max-width: 120px;
+    max-width: 130px;
     text-align: center;
   }
 
@@ -898,6 +1429,23 @@ const marqueeSectors = [...sectors, ...sectors];
     height: 48px;
     background: rgba(229, 224, 214, 0.15);
     flex-shrink: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .hero__inner { grid-template-columns: 1fr; gap: var(--space-12); }
+    .hero__media { justify-self: stretch; max-width: none; }
+    .gcp { transform: none; }
+    .hero__arcs { right: -40vw; top: 32%; width: 120vw; opacity: 0.5; }
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding-top: calc(84px + var(--space-12)); min-height: 0; }
+    .hero__heading { font-size: clamp(2.1rem, 9vw, 2.6rem); }
+    .hero__rotator { font-size: 0.86em; }
+    .gcp__body { padding: var(--space-5); min-height: 0; }
+    .gcp__tab { font-size: 9px; letter-spacing: 0.06em; padding-inline: 0; }
+    .gcp__head { padding-inline: var(--space-5); }
+    .gcp__brand { font-size: var(--text-base); }
   }
 
   /* ── STATS ────────────────────────────────── */
@@ -1662,4 +2210,209 @@ const marqueeSectors = [...sectors, ...sectors];
   .cta-final .btn--ghost-dark:hover, .cta-final .btn--wa:hover { background: var(--color-soft); }
 
   /* ── GUIDE MEDIA ──────────────────────────── */
+
+  /* ── TRES CASOS ───────────────────────────── */
+  .segments {
+    background: #F5F2EC;
+    border-top: var(--border-thin);
+    border-bottom: var(--border-thin);
+  }
+
+  .segments__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+
+  .segment {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-7);
+    background: var(--color-white);
+    border: var(--border-thin);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .segment:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .segment__num {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    line-height: 1;
+    color: var(--color-gold);
+  }
+
+  .segment__title {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .segment__quote {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--color-navy);
+  }
+
+  .segment__desc {
+    font-size: var(--text-base);
+    line-height: 1.65;
+    color: var(--color-muted);
+    flex: 1;
+  }
+
+  .segment__cta {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-gold);
+    align-self: flex-start;
+    padding-bottom: 2px;
+    transition: color var(--transition-fast);
+  }
+
+  .segment__cta:hover { color: var(--color-gold); }
+
+  .segment--alert .segment__quote { color: var(--color-terra); }
+
+  @media (max-width: 1024px) {
+    .segments__grid { grid-template-columns: 1fr; }
+  }
+@media (max-width: 480px) {
+    /* Las preguntas largas ocupan dos líneas en móvil: se reserva el alto para que no salte el texto */
+    .hero__rotator { min-height: 2.45em; }
+    .gcp__brand { font-size: var(--text-sm); }
+    .gcp__live { white-space: nowrap; }
+  }
 </style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // ── Hero: la pregunta del titular y la pestaña del informe cambian juntas ──
+  const PHRASES = [
+    'cuánto ganas?',
+    'si tu planilla cumple?',
+    'si hay caja este mes?',
+    'qué retiene SUNAT?',
+  ];
+  const CYCLE = 4.6; // segundos por área
+
+  const word = document.getElementById('heroWord');
+  const panelRoot = document.getElementById('gcPanel');
+  const progress = document.getElementById('gcProgress');
+  const tabs = panelRoot ? Array.from(panelRoot.querySelectorAll('.gcp__tab')) : [];
+  const panels = panelRoot ? Array.from(panelRoot.querySelectorAll('.gcp__panel')) : [];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const formatNum = (n: number) => n.toLocaleString('es-PE');
+
+  function animateCounters(panel: Element) {
+    panel.querySelectorAll<HTMLElement>('[data-gc-count]').forEach((el) => {
+      const target = parseInt(el.dataset.gcCount ?? '0', 10);
+      if (reduceMotion) { el.textContent = formatNum(target); return; }
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: target,
+        duration: 1.3,
+        ease: 'power2.out',
+        onUpdate: () => { el.textContent = formatNum(Math.round(obj.v)); },
+        onComplete: () => { el.textContent = formatNum(target); },
+      });
+    });
+  }
+
+  // Reinicia las animaciones CSS de un panel (barras, línea, filas) al mostrarlo
+  function restartPanel(panel: HTMLElement) {
+    panel.hidden = false;
+    panels.forEach((p) => { if (p !== panel) { p.classList.remove('is-active'); (p as HTMLElement).hidden = true; } });
+    const clone = panel.cloneNode(true) as HTMLElement;
+    panel.replaceWith(clone);
+    panels[panels.indexOf(panel)] = clone;
+    clone.classList.add('is-active');
+    animateCounters(clone);
+    return clone;
+  }
+
+  let current = 0;
+  let timer: gsap.core.Tween | null = null;
+  let progressTween: gsap.core.Tween | null = null;
+  let paused = false;
+
+  function swapWord(text: string) {
+    if (!word) return;
+    if (reduceMotion) { word.textContent = text; return; }
+    gsap.timeline()
+      .to(word, { y: -14, opacity: 0, duration: 0.32, ease: 'power2.in' })
+      .add(() => { word.textContent = text; })
+      .fromTo(word, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' });
+  }
+
+  function show(n: number) {
+    current = (n + PHRASES.length) % PHRASES.length;
+    tabs.forEach((t, i) => {
+      t.classList.toggle('is-active', i === current);
+      t.setAttribute('aria-selected', String(i === current));
+    });
+    const panel = panels[current] as HTMLElement | undefined;
+    if (panel) restartPanel(panel);
+    swapWord(PHRASES[current]);
+
+    if (progress) {
+      progressTween?.kill();
+      gsap.set(progress, { x: `${current * 100}%`, scaleX: 0 });
+      if (!reduceMotion) {
+        progressTween = gsap.to(progress, { scaleX: 1, duration: CYCLE, ease: 'none' });
+      } else {
+        gsap.set(progress, { scaleX: 1 });
+      }
+    }
+    schedule();
+  }
+
+  function schedule() {
+    timer?.kill();
+    if (reduceMotion || paused) return;
+    timer = gsap.delayedCall(CYCLE, () => show(current + 1));
+  }
+
+  if (panelRoot && panels.length) {
+    tabs.forEach((t) => t.addEventListener('click', () => show(parseInt(t.dataset.tab ?? '0', 10))));
+
+    // Al pasar el mouse por el informe se detiene el ciclo (para leerlo)
+    panelRoot.addEventListener('mouseenter', () => { paused = true; timer?.kill(); progressTween?.pause(); });
+    panelRoot.addEventListener('mouseleave', () => { paused = false; progressTween?.resume(); schedule(); });
+
+    // Solo corre cuando el hero está en pantalla
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { paused = false; progressTween?.resume(); schedule(); }
+        else { paused = true; timer?.kill(); progressTween?.pause(); }
+      });
+    }, { threshold: 0.25 });
+    io.observe(panelRoot);
+
+    animateCounters(panels[0]);
+    if (progress && !reduceMotion) {
+      gsap.set(progress, { x: '0%', scaleX: 0 });
+      progressTween = gsap.to(progress, { scaleX: 1, duration: CYCLE, ease: 'none' });
+    }
+    schedule();
+  }
+</script>
