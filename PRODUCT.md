@@ -16,7 +16,7 @@ Convertir visitas orgánicas y referencias en consultas de contacto. El CTA prin
 - **GSAP + ScrollTrigger** (animaciones de entrada, contadores)
 - **Lenis** (smooth scroll)
 - **Formulario embebido** (opción recomendada: HubSpot Forms; ver `FORM_OPTIONS.md`)
-- **Vercel** (hosting, dominio: grupocastaneda.pe)
+- **GoDaddy Web Hosting Deluxe (cPanel)** — hosting; dominio principal: grupocastaneda.com.pe. Cómo se publica: [`LANZAMIENTO.md`](LANZAMIENTO.md)
 
 ## Audiencia
 Empresarios y gerentes de MYPES y empresas medianas en Lima que buscan cambiar o contratar un servicio de contabilidad/outsourcing. No técnicos. Leen rápido, deciden despacio.
