@@ -44,9 +44,9 @@ En cPanel, agregar `grupocastaneda.com.pe` en *Domains → Create A New Domain*,
 
 ## 4. Candado (HTTPS) y redirecciones
 
-1. Cuando el dominio ya apunte al hosting: cPanel → **SSL/TLS Status** → *Run AutoSSL* (o instalar el certificado del plan).
-2. Con el candado activo, quitar el `#` de la regla 2 (HTTPS obligatorio) en `public/.htaccess`.
-3. Cuando `grupocastaneda.com.pe` ya cargue la web, quitar el `#` de la regla 3 (el dominio `.pro` redirige al principal).
+1. Cuando el dominio ya apunte al hosting: cPanel → **SSL/TLS Status** → marcar `grupocastaneda.com.pe` y `www.grupocastaneda.com.pe` → *Run AutoSSL* (o instalar el certificado del plan). El certificado debe cubrir el `.com.pe`; si solo lista nombres del `.pro`, el navegador mostrará una advertencia.
+2. La regla 2 (HTTPS obligatorio) ya viene activa en `public/.htaccess` y deja pasar las validaciones del certificado (`/.well-known/…`), que no deben redirigirse a HTTPS.
+3. Cuando `https://grupocastaneda.com.pe` ya cargue con candado válido, quitar el `#` de la regla 3 (el dominio `.pro` redirige al principal).
 
 El `.htaccess` se edita **en el repo** (`public/.htaccess`) y se publica con un PR. No editarlo en cPanel: la siguiente publicación automática lo sobrescribe.
 

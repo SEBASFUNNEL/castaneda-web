@@ -23,10 +23,11 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ %{REQUEST_SCHEME}://%1%{REQUEST_URI} [L,R=301]
 
-  # 2) HTTPS obligatorio. DESCOMENTAR SOLO cuando el candado (SSL) del dominio ya esté activo;
-  #    si se activa antes, la web deja de abrir.
-  # RewriteCond %{HTTPS} off
-  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # 2) HTTPS obligatorio. Las validaciones del certificado (AutoSSL / Let's Encrypt) quedan fuera:
+  #    si se las redirige a HTTPS antes de que exista el candado, el certificado nunca se emite.
+  RewriteCond %{REQUEST_URI} !^/\.well-known/(cpanel-dcv|pki-validation|acme-challenge)/
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # 3) Dominio .pro -> dominio principal. DESCOMENTAR SOLO cuando grupocastaneda.com.pe ya cargue la web.
   # RewriteCond %{HTTP_HOST} ^(www\.)?grupocastaneda\.pro$ [NC]
