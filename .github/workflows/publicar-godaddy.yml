@@ -53,6 +53,9 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
+          # strict valida que el certificado coincida con FTP_SERVER. Si GoDaddy no deja otra salida,
+          # crear la variable de repo FTP_SECURITY = loose (Settings → Secrets and variables → Variables).
+          security: ${{ vars.FTP_SECURITY || 'strict' }}
           local-dir: ./dist/
           # La cuenta FTP está limitada a public_html, así que su raíz ya es esa carpeta.
           server-dir: ./

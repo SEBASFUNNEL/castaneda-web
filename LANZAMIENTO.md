@@ -67,12 +67,13 @@ Cada cambio que entra a `main` se compila y se sube solo a `public_html` (workfl
 ### Configuración (una sola vez)
 
 1. cPanel → **FTP Accounts** → crear una cuenta solo para publicar (por ejemplo `publicar`), con una contraseña larga generada y **Directory = `public_html`**. Así la cuenta no alcanza nada fuera de la web.
-2. En esa misma pantalla, *Configure FTP Client* muestra el nombre del servidor. Usar ese nombre, no la IP.
+2. En esa misma pantalla, *Configure FTP Client* muestra el nombre del servidor. Usar ese nombre, no la IP ni `grupocastaneda.pro`: el servidor de GoDaddy presenta un certificado de `*.prod.phx3.secureserver.net`, así que el nombre correcto termina en `.prod.phx3.secureserver.net`. Con otro nombre, la conexión segura falla por "hostname mismatch".
 3. GitHub → repo → *Settings → Secrets and variables → Actions → New repository secret*. Crear tres:
    - `FTP_SERVER`: el nombre del servidor del paso 2.
    - `FTP_USERNAME`: el usuario completo, con su `@dominio`.
    - `FTP_PASSWORD`: la contraseña.
-4. Probar la conexión: pestaña **Actions** → *Publicar en GoDaddy* → *Run workflow* → marcar `solo_probar`. Muestra qué subiría sin subir nada.
+4. Fusionar el PR que agrega este workflow. Esa fusión dispara la **primera publicación real** (sube todos los archivos; tarda unos minutos). Si faltan los secretos o están mal, la ejecución sale en rojo y la web no cambia.
+5. Para probar la conexión sin subir nada: pestaña **Actions** → *Publicar en GoDaddy* → *Run workflow* → marcar `solo_probar`. Ese botón solo aparece cuando el workflow ya está en `main`, es decir, después de la fusión.
 
 ### Uso diario
 
@@ -88,5 +89,5 @@ Rama → PR → *Merge* a `main` → la web se actualiza sola. El estado se ve e
 ### Si falla
 
 - `530 Login incorrect`: usuario o contraseña mal en los secretos (el usuario va completo, con `@dominio`).
-- Error de certificado o TLS: el nombre del servidor no coincide con el certificado. Usar el nombre que muestra cPanel (no la IP).
+- Error de certificado o TLS (`hostname mismatch`): `FTP_SERVER` no es el nombre del servidor de GoDaddy (el que termina en `.prod.phx3.secureserver.net`). Corregir el secreto. Último recurso: crear la variable de repo `FTP_SECURITY` con el valor `loose` (acepta el certificado aunque el nombre no coincida; menos seguro).
 - Timeout o conexión rechazada: reintentar; si persiste, confirmar que el plan de hosting permite FTP.
