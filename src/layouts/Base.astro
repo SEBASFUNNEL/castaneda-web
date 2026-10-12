@@ -15,7 +15,9 @@ const {
   ogImage = '/og-castaneda.png',
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://grupocastaneda.pe');
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://grupocastaneda.com.pe');
+// Las redes (WhatsApp, LinkedIn, Facebook) exigen la URL completa de la imagen, no una ruta relativa.
+const ogImageUrl = new URL(ogImage, canonical).href;
 ---
 
 <!doctype html>
@@ -29,7 +31,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://grupocastan
   <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content={canonical} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_PE" />
 
@@ -37,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://grupocastan
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image" content={ogImageUrl} />
 
   <!-- Schema: Negocio local -->
   <script type="application/ld+json">
@@ -46,7 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://grupocastan
       "@type": "AccountingService",
       "name": "Grupo Castañeda",
       "description": "Outsourcing Contable Integral — Contabilidad, Planillas, Tesorería y Tributación",
-      "url": "https://grupocastaneda.pe",
+      "url": "https://grupocastaneda.com.pe",
       "areaServed": "PE",
       "address": {
         "@type": "PostalAddress",

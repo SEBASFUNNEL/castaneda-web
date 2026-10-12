@@ -1,0 +1,3 @@
+# Apache y los rastreadores esperan saltos de línea LF, aunque se edite en Windows.
+public/.htaccess text eol=lf
+public/robots.txt text eol=lf
