@@ -25,7 +25,7 @@ No tocar las cuentas de correo del hosting: viven fuera de `public_html`.
 
 ## 3. Dominio (grupocastaneda.com.pe)
 
-El dominio está registrado en NIC.PE y su DNS lo administra NIC.PE (`ns.rcp.net.pe`), no GoDaddy. Para que cargue la web solo se agregan estos dos registros allí; **no** se cambian los nameservers porque el correo (Zoho) depende de los registros actuales:
+El dominio está registrado en NIC.PE (hoy **https://punto.pe**) y su DNS lo sirve la RCP (`ns.rcp.net.pe`). **No está en GoDaddy**: el DNS de GoDaddy solo controla `grupocastaneda.pro`. Para que cargue la web solo se agregan estos dos registros en el DNS del `.com.pe`; **no** se cambian los nameservers porque el correo (Zoho) depende de los registros actuales:
 
 | Tipo | Nombre | Valor |
 |---|---|---|
@@ -33,6 +33,12 @@ El dominio está registrado en NIC.PE y su DNS lo administra NIC.PE (`ns.rcp.net
 | CNAME | `www` | `grupocastaneda.com.pe` |
 
 Registros de correo que **deben quedar intactos**: MX (`mx.zoho.com`, `mx2.zoho.com`, `mx3.zoho.com`), TXT de SPF, TXT de Brevo, `mail._domainkey` (DKIM) y `_dmarc`.
+
+Dónde se hace: entrar a https://punto.pe/login.php con la cuenta del titular (olvidó la clave: https://punto.pe/recuperar_cuenta.php) → **Administrar** el dominio → **Administrar DNS**.
+
+- Si el panel muestra una tabla de registros (A, CNAME, MX, TXT): agregar los dos de arriba.
+- Si solo muestra campos de servidores DNS: **no escribir otros servidores ni confirmar cambios**, porque se rompe el correo. Pedir a soporte de Punto.pe (https://punto.pe/contact.php) que agreguen los dos registros a la zona. Cualquier cambio de DNS desde el panel se confirma por un correo que llega al contacto administrativo del dominio.
+- Mantener la opción **Usar DNS de la RCP**, que es la actual.
 
 En cPanel, agregar `grupocastaneda.com.pe` en *Domains → Create A New Domain*, compartiendo la carpeta `public_html` con el dominio principal.
 
