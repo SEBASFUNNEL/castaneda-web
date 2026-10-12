@@ -1,0 +1,59 @@
+# Publica la web en GoDaddy (cPanel) por FTP cada vez que cambia `main`.
+# Necesita 3 secretos del repo: FTP_SERVER, FTP_USERNAME y FTP_PASSWORD (ver LANZAMIENTO.md, sección 6).
+name: Publicar en GoDaddy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      solo_probar:
+        description: "Solo probar la conexión: muestra qué subiría, pero no sube nada"
+        type: boolean
+        default: false
+
+# Un solo despliegue a la vez: si llegan dos cambios seguidos, el segundo espera al primero.
+concurrency:
+  group: publicar-godaddy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar
+        run: npm run build
+
+      - name: Comprobar que dist/ tiene lo esencial
+        run: |
+          test -f dist/index.html
+          test -f dist/404.html
+          test -f dist/.htaccess
+
+      - name: Subir dist/ a public_html
+        # Acción de terceros que maneja la contraseña: va fijada por SHA (v4.4.0), no por etiqueta.
+        # Solo sube lo que cambió y solo borra lo que ella misma subió antes: no toca .well-known ni el correo.
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          # La cuenta FTP está limitada a public_html, así que su raíz ya es esa carpeta.
+          server-dir: ./
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.solo_probar }}
