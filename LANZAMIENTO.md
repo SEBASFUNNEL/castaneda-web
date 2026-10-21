@@ -1,6 +1,8 @@
 # Cómo se publica la web
 
-Web estática (Astro). Se compila en la PC y el resultado (`dist/`) se sube al hosting de GoDaddy (Web Hosting Deluxe, cPanel). Dominio principal: **grupocastaneda.com.pe**.
+Web estática (Astro). Se compila y el resultado (`dist/`) se sube al hosting de GoDaddy (Web Hosting Deluxe, cPanel). Dominio principal: **grupocastaneda.com.pe**.
+
+Lo normal es la **publicación automática** (sección 6): cada cambio que entra a `main` se compila y se sube solo. Las secciones 1 y 2 son la forma manual, por si la automática falla.
 
 ## 1. Compilar
 
@@ -23,7 +25,7 @@ No tocar las cuentas de correo del hosting: viven fuera de `public_html`.
 
 ## 3. Dominio (grupocastaneda.com.pe)
 
-El dominio está registrado en NIC.PE y su DNS lo administra NIC.PE (`ns.rcp.net.pe`), no GoDaddy. Para que cargue la web solo se agregan estos dos registros allí; **no** se cambian los nameservers porque el correo (Zoho) depende de los registros actuales:
+El dominio está registrado en NIC.PE (hoy **https://punto.pe**) y su DNS lo sirve la RCP (`ns.rcp.net.pe`). **No está en GoDaddy**: el DNS de GoDaddy solo controla `grupocastaneda.pro`. Para que cargue la web solo se agregan estos dos registros en el DNS del `.com.pe`; **no** se cambian los nameservers porque el correo (Zoho) depende de los registros actuales:
 
 | Tipo | Nombre | Valor |
 |---|---|---|
@@ -32,13 +34,21 @@ El dominio está registrado en NIC.PE y su DNS lo administra NIC.PE (`ns.rcp.net
 
 Registros de correo que **deben quedar intactos**: MX (`mx.zoho.com`, `mx2.zoho.com`, `mx3.zoho.com`), TXT de SPF, TXT de Brevo, `mail._domainkey` (DKIM) y `_dmarc`.
 
+Dónde se hace: entrar a https://punto.pe/login.php con la cuenta del titular (olvidó la clave: https://punto.pe/recuperar_cuenta.php) → **Administrar** el dominio → **Administrar DNS**.
+
+- Si el panel muestra una tabla de registros (A, CNAME, MX, TXT): agregar los dos de arriba.
+- Si solo muestra campos de servidores DNS: **no escribir otros servidores ni confirmar cambios**, porque se rompe el correo. Pedir a soporte de Punto.pe (https://punto.pe/contact.php) que agreguen los dos registros a la zona. Cualquier cambio de DNS desde el panel se confirma por un correo que llega al contacto administrativo del dominio.
+- Mantener la opción **Usar DNS de la RCP**, que es la actual.
+
 En cPanel, agregar `grupocastaneda.com.pe` en *Domains → Create A New Domain*, compartiendo la carpeta `public_html` con el dominio principal.
 
 ## 4. Candado (HTTPS) y redirecciones
 
-1. Cuando el dominio ya apunte al hosting: cPanel → **SSL/TLS Status** → *Run AutoSSL* (o instalar el certificado del plan).
-2. Con el candado activo, editar `.htaccess` en `public_html` y quitar el `#` de la regla 2 (HTTPS obligatorio).
-3. Cuando `grupocastaneda.com.pe` ya cargue la web, quitar el `#` de la regla 3 (el dominio `.pro` redirige al principal).
+1. Cuando el dominio ya apunte al hosting: cPanel → **SSL/TLS Status** → marcar `grupocastaneda.com.pe` y `www.grupocastaneda.com.pe` → *Run AutoSSL* (o instalar el certificado del plan). El certificado debe cubrir el `.com.pe`; si solo lista nombres del `.pro`, el navegador mostrará una advertencia.
+2. La regla 2 (HTTPS obligatorio) ya viene activa en `public/.htaccess` y deja pasar las validaciones del certificado (`/.well-known/…`), que no deben redirigirse a HTTPS.
+3. Cuando `https://grupocastaneda.com.pe` ya cargue con candado válido, quitar el `#` de la regla 3 (el dominio `.pro` redirige al principal).
+
+El `.htaccess` se edita **en el repo** (`public/.htaccess`) y se publica con un PR. No editarlo en cPanel: la siguiente publicación automática lo sobrescribe.
 
 ## 5. Revisar después de publicar
 
@@ -49,3 +59,35 @@ En cPanel, agregar `grupocastaneda.com.pe` en *Domains → Create A New Domain*,
 - Al pegar el link en WhatsApp aparece la imagen de marca.
 
 Si tras subir aparece un error 500, el primer sospechoso es `.htaccess`: renombrarlo a `htaccess.txt`, recargar y avisar.
+
+## 6. Publicación automática (GitHub → GoDaddy)
+
+Cada cambio que entra a `main` se compila y se sube solo a `public_html` (workflow `.github/workflows/publicar-godaddy.yml`, unos 2 a 3 minutos). Solo sube lo que cambió y solo borra lo que ella misma subió antes, así que no toca `.well-known` ni el correo. No publica desde ramas ni desde PRs, solo desde `main`.
+
+### Configuración (una sola vez)
+
+1. cPanel → **FTP Accounts** → crear una cuenta solo para publicar (por ejemplo `publicar`), con una contraseña larga generada y **Directory = `public_html`**. Así la cuenta no alcanza nada fuera de la web.
+2. En esa misma pantalla, *Configure FTP Client* muestra el nombre del servidor. Usar ese nombre, no la IP ni `grupocastaneda.pro`: el servidor de GoDaddy presenta un certificado de `*.prod.phx3.secureserver.net`, así que el nombre correcto termina en `.prod.phx3.secureserver.net`. Con otro nombre, la conexión segura falla por "hostname mismatch".
+3. GitHub → repo → *Settings → Secrets and variables → Actions → New repository secret*. Crear tres:
+   - `FTP_SERVER`: el nombre del servidor del paso 2.
+   - `FTP_USERNAME`: el usuario completo, con su `@dominio`.
+   - `FTP_PASSWORD`: la contraseña.
+4. Fusionar el PR que agrega este workflow. Esa fusión dispara la **primera publicación real** (sube todos los archivos; tarda unos minutos). Si faltan los secretos o están mal, la ejecución sale en rojo y la web no cambia.
+5. Para probar la conexión sin subir nada: pestaña **Actions** → *Publicar en GoDaddy* → *Run workflow* → marcar `solo_probar`. Ese botón solo aparece cuando el workflow ya está en `main`, es decir, después de la fusión.
+
+### Uso diario
+
+Rama → PR → *Merge* a `main` → la web se actualiza sola. El estado se ve en la pestaña **Actions** (✓ verde = publicado). Si falla, se corrige y se usa *Re-run all jobs*; una subida cortada a la mitad se completa al repetirla.
+
+### Reglas
+
+- `.htaccess` se edita en `public/.htaccess` (Git), nunca en cPanel.
+- Los archivos que se suban a mano a `public_html` y no estén en el repo no se borran, pero tampoco quedan versionados. Mejor ponerlos en `public/`.
+- Para cambiar la contraseña FTP: cambiarla en cPanel y actualizar el secreto `FTP_PASSWORD`.
+- Nunca pegar la contraseña FTP en el chat, en issues ni en el código.
+
+### Si falla
+
+- `530 Login incorrect`: usuario o contraseña mal en los secretos (el usuario va completo, con `@dominio`).
+- Error de certificado o TLS (`hostname mismatch`): `FTP_SERVER` no es el nombre del servidor de GoDaddy (el que termina en `.prod.phx3.secureserver.net`). Corregir el secreto. Último recurso: crear la variable de repo `FTP_SECURITY` con el valor `loose` (acepta el certificado aunque el nombre no coincida; menos seguro).
+- Timeout o conexión rechazada: reintentar; si persiste, confirmar que el plan de hosting permite FTP.
